@@ -1,0 +1,64 @@
+* { box-sizing:border-box; }
+
+form {
+    width:400px;
+    height:630px;
+    display : flex;
+    flex-direction: column;
+    align-items:center;
+    position : absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%) ;
+    border: 1px solid #FC79A5;
+    border-radius: 10px;
+}
+
+.input-field {
+    width: 300px;
+    height: 40px;
+    border : 1px solid #FFA4C1;
+    border-radius:5px;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+label {
+    width:300px;
+    height:30px;
+    margin-top :4px;
+}
+
+#top-label{
+    margin-top: 10px;
+}
+
+.sign-btn {
+    background-color: #FFA4C1;
+    color : #FEFFFF;
+    width:300px;
+    height:80px;
+    font-size: 17px;
+    border : none;
+    border-radius: 5px;
+    margin : 20px 0 20px 0;
+}
+
+.title {
+    font-size : 50px;
+    margin: 30px 0 10px 0;
+    color: #3C2925;
+
+}
+
+.msg {
+    height: 25px;
+    text-align:center;
+    font-size:16px;
+    color: #D93A2B;
+    margin-bottom: 20px;
+}
+
+.sns-chk {
+    margin-top : 5px;
+}
