@@ -21,7 +21,7 @@
         VALUES (#{bno}, #{pcno}, #{comment}, #{commenter}, now(), now())
     </insert>
 
-    <select id="selectCnoAll" parameterType="int" resultType="CommentDto">
+    <select id="selectCnoAll" parameterType="CommentDto">
         SELECT * FROM comment
         WHERE bno = #{bno}
         ORDER BY reg_date ASC, cno ASC

@@ -71,54 +71,12 @@
   </form>
 
 <hr id="line"> <!-- ---------------------------------------------- -->
-<div class="comment">
-    <div class="comment-wset">
-        <div id="c-username"><span><i class="bi bi-chat-left-dots"></i> ${boardDto.writer}</span></div>
-        <div class="input-group">
-            <span class="input-group-text">댓글 쓰기</span>
-            <textarea class="form-control" aria-label="With textarea" id="text-comment-area" rows="3" placeholder="내용을 입력하세요."></textarea>
-            <button class="btn btn-outline-secondary" type="button" id="commentSendBtn">등록</button>
-        </div>
-    </div>
-</div>
-<hr>
 
-<div class="comment">
-    <div class="comment-rset" >
-        <div id="c-username">${commentDto.commenter}</div>
-        <div><p> ${commentDto.conmment} </p></div>
-        <div>
-            <p class="btns-l">${commentDto.reg_date}</p>
-            <p><a class="btns-l" id="write-comment-btn">답글 달기</a></p>
-        </div>
-        <br>
-    </div>
-
-    <div class="comment-reply" >
-        <div id="c-username"><i class="bi bi-reply"></i> 여우</div>
-        <div><p>여우 답글 내용 </p></div>
-        <div>
-            <p class="btns-l">2023.09.15</p>
-            <p><a class="btns-l">삭제</a></p>
-        </div>
-        <br>
-    </div>
-
-    <div class="comment-rset" >
-        <div id="c-username">판다</div>
-        <div><p>판다 댓글 내용 </p></div>
-        <div>
-            <p class="btns-l">2023.09.15</p>
-            <p><a class="btns-l">삭제</a></p>
-        </div>
-        <br>
-    </div>
-
+<%@include file="comment.jsp"%>
 
 </div>
 
-</div>
-
+<%-- --------------------------------------------------------------------------------------------------------- --%>
 
 <script>
   $(document).ready(function(){
@@ -186,8 +144,6 @@
   });
 
 </script>
-
-
 
 </body>
 </html>

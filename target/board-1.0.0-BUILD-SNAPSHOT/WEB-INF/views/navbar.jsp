@@ -35,7 +35,7 @@
 <div id="menu">
     <ul class="nav-ul">
         <li id="logo">Web Board</li>
-        <li><a href="<c:url value='/'/>">Home</a></li>
+        <li><a href="<c:url value='/?loginOut=Login'/>">Home</a></li>
         <li><a href="<c:url value='/board/list'/>">Board</a></li>
         <li><a href="<c:url value='${loginOutLink}'/>">${loginOut}</a></li>
         <li><a href="<c:url value='/register/add'/>">Sign in</a></li>

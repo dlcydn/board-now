@@ -60,10 +60,10 @@
           <th class="viewcnt">조회수</th> <!-- view count -->
         </tr>
       </thead>
-      <c:forEach var="boardDto" items="${list}" varStatus="status">
+      <c:forEach var="boardDto" items="${list}">  <%-- varStatus = "status" --%>
         <tr>
-<%--          <td class="no">${boardDto.bno}</td>--%>
-          <td class="no"> ${status.count} </td>
+          <td class="no">${boardDto.bno}</td>
+<%--          <td class="no"> ${status.count} </td>--%>
           <td class="title"><a href="<c:url value="/board/read${ph.sc.queryString}&bno=${boardDto.bno}"/>">${boardDto.title}</a></td>
           <td class="writer">${boardDto.writer}</td>
           <c:choose>

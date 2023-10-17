@@ -12,6 +12,7 @@ import com.unipoint.board.domain.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +40,7 @@ public class LoginController {
 
 	@PostMapping("/login")
 	public String login(String id, String pwd, String toURL, boolean rememberId, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+			HttpServletResponse response, Model model) throws Exception {
 
 		// 1. confirm the id and pwd
 		if (!loginCheck(id, pwd)) {
@@ -66,6 +67,7 @@ public class LoginController {
 //		       2. save to response
 			response.addCookie(cookie);
 		}
+
 //		       3. move to home
 		toURL = toURL == null || toURL.equals("") ? "/" : toURL;
 

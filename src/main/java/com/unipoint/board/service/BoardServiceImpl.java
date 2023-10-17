@@ -61,6 +61,7 @@ public class BoardServiceImpl implements BoardService {
         return boardDao.update(boardDto);
     }
 
+
     @Override
     public int getSearchResultCnt(SearchCondition sc) throws Exception {
         return boardDao.searchResultCnt(sc);

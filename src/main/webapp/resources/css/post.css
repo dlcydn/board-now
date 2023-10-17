@@ -106,26 +106,3 @@ hr{
     float: left;
     margin-right: 1%;
 }
-
-.comment{
-    /* 	background-color: #f5e9f3; */
-    padding: 2% 5% 2% 5%;
-}
-
-#c-username{
-    margin-bottom: 10px;
-}
-
-#text-comment-area{
-    padding: 10px;
-}
-
-.comment-reply{
-    margin-left: 5%;
-    padding: 1%;
-}
-
-.comment-rset{
-    padding: 1%;
-
-}
