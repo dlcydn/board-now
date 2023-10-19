@@ -2,7 +2,9 @@ package com.unipoint.board.service;
 
 import com.unipoint.board.dao.BoardDao;
 import com.unipoint.board.dao.CommentDao;
+import com.unipoint.board.domain.BoardDto;
 import com.unipoint.board.domain.CommentDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,13 +13,16 @@ import java.util.List;
 @Service
 public class CommentServiceImpl implements CommentService{
 
-    private BoardDao boardDao;
-    private CommentDao commentDao;
+    //Dao 객체를 불러올 때 필요에 따라 접근제어자를 추가하지만 이 경우에는 없어도 괜찮다.
+    BoardDao boardDao;
+    CommentDao commentDao;
 
+    @Autowired
     public CommentServiceImpl(CommentDao commentDao, BoardDao boardDao) {
         this.commentDao = commentDao;
         this.boardDao = boardDao;
     }
+    //Dao에 @Autowired 어노테이션을 주는 것 보다 생성자에 주는 것이 더 좋다.
 
     @Override
     public int getCount(Integer bno) throws Exception {

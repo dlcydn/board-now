@@ -35,8 +35,9 @@ public class CommentDaoImpl implements CommentDao {
 
     @Override
     public List<CommentDto> selectCnoAll(Integer bno) throws Exception {
-        return session.selectList(namespace + "selectCnoAll" + bno );
+        return session.selectList(namespace + "selectCnoAll", bno);
     }
+
 
     @Override
     public CommentDto select(Integer cno) throws Exception {

@@ -6,6 +6,7 @@
 
     <!--    the SQL Commands that want run -->
     <!-- 게시물 번호를 주면 댓글 다 지움-->
+
     <delete id="deleteCnoAll" parameterType="int">
         DELETE FROM comment
         WHERE bno = #{bno}
@@ -21,14 +22,14 @@
         VALUES (#{bno}, #{pcno}, #{comment}, #{commenter}, now(), now())
     </insert>
 
-    <select id="selectCnoAll" parameterType="CommentDto">
-        SELECT * FROM comment
+    <select id="selectCnoAll" parameterType="int" resultType="CommentDto">
+        SELECT cno, bno, pcno, comment, commenter, reg_date, up_date FROM comment
         WHERE bno = #{bno}
         ORDER BY reg_date ASC, cno ASC
     </select>
 
     <select id="select" parameterType="int" resultType="CommentDto">
-        SELECT * FROM comment
+        SELECT cno, bno, pcno, comment, commenter, reg_date, up_date FROM comment
         WHERE cno = #{cno}
     </select>
 
@@ -42,4 +43,6 @@
         SET comment = #{comment}, up_date = now()
         WHERE cno = #{cno} AND commenter = #{commenter}
     </update>
+
+
 </mapper>

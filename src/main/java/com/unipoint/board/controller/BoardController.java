@@ -23,8 +23,8 @@ public class BoardController {
     BoardService boardService;
     //Board Service를 받아옴.
 
-//    @Autowired
-//    CommentService commentService;
+    @Autowired
+    CommentService commentService;
 
     @PostMapping("/modify")
     public String modify(BoardDto boardDto, SearchCondition sc, RedirectAttributes rattr, Model m, HttpSession session) {
@@ -76,29 +76,21 @@ public class BoardController {
         }
     }
 
-//    @ResponseBody
     @GetMapping("/read")
     public String read(Integer bno, SearchCondition sc, RedirectAttributes rattr, Model m) {
-
-//        List<CommentDto> comments = null;
-
         try {
             BoardDto boardDto = boardService.read(bno);
-//            comments = commentService.getList(bno); // 댓글 목록 불러오기
-
-            m.addAttribute("board", boardDto);
-//            m.addAttribute("comments", comments);
-
+            m.addAttribute(boardDto);
         } catch (Exception e) {
             e.printStackTrace();
             rattr.addFlashAttribute("msg", "READ_ERR");
             return "redirect:/board/list"+sc.getQueryString();
         }
+
         return "board";
     }
-
-//    @ResponseBody
-//    @RequestMapping(value="/comment",  produces="application/json; charset=utf8") // comments?bno=1080
+//
+//    @RequestMapping(value="/read/comments",  produces="application/json; charset=utf8") // comments?bno=1080
 //    public ResponseEntity<List<CommentDto>> list(Integer bno) {
 //        List<CommentDto> list = null;
 //
@@ -163,4 +155,3 @@ public class BoardController {
     }
 
 }
-

@@ -43,8 +43,7 @@ public class CommentController {
     // 맵핑된 url(cno)을 읽어올 때는 @PathVariable을 붙여줘야 한다.
     @DeleteMapping("/comments/{cno}") // comments/1?bno=1 <-- 삭제할 댓글 번호
     public ResponseEntity<String> remove(HttpSession session, @PathVariable Integer cno, Integer bno) {
-        String commenter = "jipark09";
-//                (String)session.getAttribute("id");
+        String commenter = (String) session.getAttribute("id");
         try {
             int rowCnt = commentService.remove(cno, bno, commenter);
 
@@ -63,7 +62,7 @@ public class CommentController {
     @PostMapping("/comments") // comments?bno=1 POST
     public ResponseEntity<String> write(@RequestBody CommentDto dto, Integer bno, HttpSession session) {
 //        String commenter = (String) session.getAttribute("id");
-        String commenter = "jipark09";
+        String commenter = (String) session.getAttribute("id");
         dto.setCommenter(commenter);
         dto.setBno(bno);
         System.out.println("dto=" + dto);
@@ -85,8 +84,7 @@ public class CommentController {
     // 댓글을 수정하는 메서드
 //    @PatchMapping("/comments/{cno}") // 수정할 댓글 번호를 적어준다.
 //    public ResponseEntity<String> modify(@PathVariable Integer cno, @RequestBody CommentDto dto) {
-////        String commenter = (String) session.getAttribute("id");
-//        String commenter = "jipark09";
+//        String commenter = (String) session.getAttribute("id");
 //        dto.setCommenter(commenter);
 //        dto.setCno(cno);
 //

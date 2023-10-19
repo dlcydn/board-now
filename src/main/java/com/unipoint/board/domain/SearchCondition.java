@@ -11,6 +11,7 @@ public class SearchCondition {
     private String  option = "";
     private String  keyword = "";
 //    private Integer  offset;
+//    private Integer bno = 1;
 
     public static final int MIN_PAGE_SIZE = 5;
     public static final int DEFAULT_PAGE_SIZE = 10;
@@ -27,6 +28,7 @@ public class SearchCondition {
         this.pageSize = pageSize;
         this.option = option;
         this.keyword = keyword;
+//        this.bno = bno;
     }
 
     public String getQueryString() {
@@ -40,6 +42,7 @@ public class SearchCondition {
                 .queryParam("pageSize", pageSize)
                 .queryParam("option",   option)
                 .queryParam("keyword",  keyword)
+//                .queryParam("bno", bno)
                 .build().toString();
     }
     public Integer getPage() {
