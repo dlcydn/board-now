@@ -10,89 +10,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79bd1809-9efd-4d17-8b16-d25c8121cdcb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/apache_tomcat_9_0_library.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.m2e.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.component" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.project.facet.core.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.validation.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.springframework.ide.eclipse.beans.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.springframework.ide.eclipse.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.springBeans" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/board.iml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/unipoint/board/controller/BoardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/unipoint/board/controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/dao/CommentDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/unipoint/board/dao/CommentDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/domain/CommentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/unipoint/board/domain/CommentDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/domain/SearchCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/unipoint/board/domain/SearchCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/service/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/unipoint/board/service/CommentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/commentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/commentMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/dao/BoardDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/unipoint/board/dao/BoardDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/dao/BoardDaoImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/unipoint/board/service/CommentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/service/CommentServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/comment.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/comment.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/post.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/post.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/controller/BoardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/controller/BoardController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/controller/CommentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/dao/CommentDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/dao/CommentDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/domain/CommentDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/domain/CommentDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/domain/SearchCondition.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/domain/SearchCondition.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/dao/BoardDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/dao/BoardDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/dao/BoardDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/dao/BoardDaoImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/service/CommentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/service/CommentServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mapper/commentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mapper/commentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/spring/appServlet/servlet-context.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/spring/root-context.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/views/board.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/views/boardList.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/views/comment.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/views/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/views/loginForm.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/views/navbar.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/views/registerForm.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/views/registerInfo.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/log4j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/log4j.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/root-context.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/board.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/board.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/comment.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/resources/css/comment.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/resources/css/post.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/resources/css/post.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/controller/BoardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/controller/BoardController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/controller/CommentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/dao/CommentDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/dao/CommentDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/domain/CommentDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/domain/CommentDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/domain/SearchCondition.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/domain/SearchCondition.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/dao/BoardDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/dao/BoardDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/dao/BoardDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/dao/BoardDaoImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/service/CommentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/service/CommentServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/commentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/commentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/spring/appServlet/servlet-context.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/spring/root-context.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/views/board.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/views/boardList.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/views/comment.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/views/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/views/loginForm.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/views/navbar.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/views/registerForm.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/views/registerInfo.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.unipoint/board/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.unipoint/board/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/log4j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log4j.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -128,10 +84,11 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.3285834&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -140,6 +97,12 @@
     ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.unipoint.board.dao" />
+      <recent name="com.unipoint.board.service" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Tomcat 9.0" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.52" ALTERNATIVE_JRE_ENABLED="false">
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
@@ -244,11 +207,16 @@
       <workItem from="1697602078361" duration="160000" />
       <workItem from="1697602253301" duration="205000" />
       <workItem from="1697602473281" duration="12926000" />
-      <workItem from="1697674164279" duration="1286000" />
+      <workItem from="1697674164279" duration="20128000" />
+      <workItem from="1697697665484" duration="4074000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

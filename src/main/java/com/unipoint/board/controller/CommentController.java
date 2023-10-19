@@ -25,7 +25,7 @@ public class CommentController {
     CommentService commentService;
 
     // 게시물 번호를 받으면 그 게시물에 달린 모든 댓글을 반환하는 메서드
-    @RequestMapping(value="/comments",  produces="application/json; charset=utf8") // comments?bno=1080
+    @RequestMapping(value="/comments") // comments?bno=1080    ,  produces="application/json; charset=utf8"
     public ResponseEntity<List<CommentDto>> list(Integer bno) {
         List<CommentDto> list = null;
 
@@ -61,11 +61,10 @@ public class CommentController {
     // 댓글 저장하는 메서드
     @PostMapping("/comments") // comments?bno=1 POST
     public ResponseEntity<String> write(@RequestBody CommentDto dto, Integer bno, HttpSession session) {
-//        String commenter = (String) session.getAttribute("id");
         String commenter = (String) session.getAttribute("id");
         dto.setCommenter(commenter);
         dto.setBno(bno);
-        System.out.println("dto=" + dto);
+        System.out.println("dddto=" + dto);
 
         try {
             int result = commentService.write(dto);
@@ -77,30 +76,30 @@ public class CommentController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>("WRT_ERR", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("WRT_ERR", HttpStatus.BAD_REQUEST);
         }
     } //write
 
     // 댓글을 수정하는 메서드
-//    @PatchMapping("/comments/{cno}") // 수정할 댓글 번호를 적어준다.
-//    public ResponseEntity<String> modify(@PathVariable Integer cno, @RequestBody CommentDto dto) {
-//        String commenter = (String) session.getAttribute("id");
-//        dto.setCommenter(commenter);
-//        dto.setCno(cno);
-//
-//        try {
-//            int result = commentService.modify(dto);
-//
-//            if(result != 1) {
-//                throw new Exception("Modify Failed!");
-//            }
-//            return new ResponseEntity<String>("MOD_OK", HttpStatus.OK);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new ResponseEntity<String>("MOD_ERR", HttpStatus.BAD_REQUEST);
-//        }
-//    }
+    @PatchMapping("/comments/{cno}") // 수정할 댓글 번호를 적어준다.
+    public ResponseEntity<String> modify(@PathVariable Integer cno, @RequestBody CommentDto dto) {
+        String commenter = (String) session.getAttribute("id");
+        dto.setCommenter(commenter);
+        dto.setCno(cno);
+
+        try {
+            int result = commentService.modify(dto);
+
+            if(result != 1) {
+                throw new Exception("Modify Failed!");
+            }
+            return new ResponseEntity<String>("MOD_OK", HttpStatus.OK);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<String>("MOD_ERR", HttpStatus.BAD_REQUEST);
+        }
+    }
 
 
 } //controller

@@ -1,20 +1,18 @@
 package com.unipoint.board.service;
 
-import com.unipoint.board.dao.BoardDao;
-import com.unipoint.board.dao.CommentDao;
-import com.unipoint.board.domain.BoardDto;
-import com.unipoint.board.domain.CommentDto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import com.unipoint.board.dao.*;
+import com.unipoint.board.domain.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
+import org.springframework.transaction.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 @Service
-public class CommentServiceImpl implements CommentService{
-
-    //Dao 객체를 불러올 때 필요에 따라 접근제어자를 추가하지만 이 경우에는 없어도 괜찮다.
+public class CommentServiceImpl implements CommentService {
+    @Autowired
     BoardDao boardDao;
+    @Autowired
     CommentDao commentDao;
 
     @Autowired
@@ -22,7 +20,6 @@ public class CommentServiceImpl implements CommentService{
         this.commentDao = commentDao;
         this.boardDao = boardDao;
     }
-    //Dao에 @Autowired 어노테이션을 주는 것 보다 생성자에 주는 것이 더 좋다.
 
     @Override
     public int getCount(Integer bno) throws Exception {
@@ -32,36 +29,35 @@ public class CommentServiceImpl implements CommentService{
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int remove(Integer cno, Integer bno, String commenter) throws Exception {
-        int rowCnt = boardDao.increaseCommentCnt(-1, bno);
+        int rowCnt = boardDao.updateCommentCnt(bno, -1);
         System.out.println("updateCommentCnt - rowCnt = " + rowCnt);
-
+//        throw new Exception("test");
         rowCnt = commentDao.delete(cno, commenter);
         System.out.println("rowCnt = " + rowCnt);
-
         return rowCnt;
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int write(CommentDto commentDto) throws Exception {
-        boardDao.increaseCommentCnt(1, commentDto.getBno());
+        boardDao.updateCommentCnt(commentDto.getBno(), 1);
+//                throw new Exception("test");
         return commentDao.insertCno(commentDto);
     }
 
     @Override
     public List<CommentDto> getList(Integer bno) throws Exception {
+//        throw new Exception("test");
         return commentDao.selectCnoAll(bno);
     }
 
     @Override
-    public CommentDto read (Integer cno) throws Exception {
+    public CommentDto read(Integer cno) throws Exception {
         return commentDao.select(cno);
     }
 
     @Override
-    public int modify (CommentDto commentDto) throws Exception {
+    public int modify(CommentDto commentDto) throws Exception {
         return commentDao.update(commentDto);
     }
-
-
 }

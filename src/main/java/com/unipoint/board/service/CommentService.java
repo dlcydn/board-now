@@ -20,5 +20,3 @@ public interface CommentService {
 
     int modify(CommentDto commentDto) throws Exception;
 }
-
-//the services or something that having logic or calculation has to write the test code
