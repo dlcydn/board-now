@@ -64,7 +64,7 @@ public class CommentController {
         String commenter = (String) session.getAttribute("id");
         dto.setCommenter(commenter);
         dto.setBno(bno);
-        System.out.println("dddto=" + dto);
+        System.out.println("dto=" + dto);
 
         try {
             int result = commentService.write(dto);
@@ -82,7 +82,7 @@ public class CommentController {
 
     // 댓글을 수정하는 메서드
     @PatchMapping("/comments/{cno}") // 수정할 댓글 번호를 적어준다.
-    public ResponseEntity<String> modify(@PathVariable Integer cno, @RequestBody CommentDto dto) {
+    public ResponseEntity<String> modify(@PathVariable Integer cno, @RequestBody CommentDto dto, HttpSession session) {
         String commenter = (String) session.getAttribute("id");
         dto.setCommenter(commenter);
         dto.setCno(cno);

@@ -10,33 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79bd1809-9efd-4d17-8b16-d25c8121cdcb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/unipoint/board/controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/dao/BoardDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/unipoint/board/dao/BoardDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/dao/BoardDaoImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/unipoint/board/service/CommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/service/CommentServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/post.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/post.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/controller/CommentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/dao/BoardDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/dao/BoardDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/dao/BoardDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/dao/BoardDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/service/CommentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/service/CommentServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/log4j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/log4j.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/root-context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/board.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/board.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/resources/css/post.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/resources/css/post.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/controller/CommentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/dao/BoardDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/dao/BoardDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/dao/BoardDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/dao/BoardDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/service/CommentServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/service/CommentServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/log4j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log4j.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +186,8 @@
       <workItem from="1697602253301" duration="205000" />
       <workItem from="1697602473281" duration="12926000" />
       <workItem from="1697674164279" duration="20128000" />
-      <workItem from="1697697665484" duration="4074000" />
+      <workItem from="1697697665484" duration="4603000" />
+      <workItem from="1697759387750" duration="25277000" />
     </task>
     <servers />
   </component>

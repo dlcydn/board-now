@@ -89,7 +89,6 @@
 <hr>
 
 <div class="comment">
-
     <div id="commentList"></div>
 
 </div>
@@ -125,6 +124,7 @@
     //script 전체에서 변수명으로 함수 선언해서 사용 하는 식으로 해야함.
 
   $(document).ready(function(){
+
     let formCheck = function() {
       let form = document.getElementById("form");
       if(form.title.value=="") {
@@ -187,6 +187,10 @@
       location.href="<c:url value='/board/list${searchCondition.queryString}'/>";
     });
 
+
+
+    // -------------------------------------------------- comments ------------------------------------------------
+
     let bno = 6;
 
     // 댓글 가져오기 함수
@@ -205,72 +209,169 @@
             error : function(){ alert("error from showList") } // 에러가 발생했을 때, 호출될 함수
         }); // $.ajax()
 
+        //댓글 부분 띄워주기 위한 내용
         let toHtml = function (comments) {
             var tmp = "<div class='comment-rset'>";
+            // var isWriter = comments.commenter;
 
             // 댓글 하나하나 들고와서 tmp에 쌓는다.
             comments.forEach(function (comment) {
-                tmp += '<p data-cno=' + comment.cno
-                tmp += ' data-pcno=' + comment.pcnoa
-                tmp += ' data-bno=' + comment.bno + '/p>'
+                tmp += '<div data-cno=' + comment.cno
+                tmp += ' data-pcno=' + comment.pcno
+                tmp += ' data-bno=' + comment.bno
+                // tmp += 'data-comment'+ comment.comment
+                tmp += 'id = "toReplace" >'
 
                 // span태그에 넣어야 나중에 작성자만 따로 읽어오기 쉽다.
                 tmp += '<div id="c-username" class="commenter"><i class="bi bi-reply"></i> ' + comment.commenter + '</div>'
-                tmp += '<div class="comment"><p>' + comment.comment + '</p></div>'
-                tmp += '<div><p class="btns-l">' + comment.up_date + '</p>'
-                tmp += '<p><a class="btns-l" id="write-comment-btn"> 답글달기 </a></p>'
-                tmp += '<p><a class="btns-l"> 삭제</a></p>'
+                tmp += '<div class="comment"><span id="commentContents" data-name="contentAr">' + comment.comment + '</span></div>'
+                tmp += '<div><p class="btns-l">' + comment.up_date + '</p></div>'
+                tmp += '<p><a class="btns-l" id="wriReplyBtn"> 답글달기 </a></p>'
+
+                tmp += '<button type="button" id="modCommentBtn" class="btn btn-modify">수정</button>'
+                tmp += '<button type="button" id="delCommentBtn" class="btn btn-remove">삭제</button>'
+
+                tmp += '</div>'
                 tmp += '<br>'
-            })
+                tmp += '</div>'
 
-            return tmp + "</div>"; // div html로 반환한다.
-        }
+            }) //each
 
-    }
+            return tmp; // div html로 반환한다.
+        } //toHtml
 
-    //댓글 쓰기 insert 부분
-      //alert 로 이벤트 작동하는지 확인해보는 것도 좋음.
-    $("#commentSendBtn").on("click",function() {
-        let comment = $("#text-comment-area").val();
-        if(comment.trim() === '') {
-            alert("댓글을 입력해주세요");
-            $("text-comment-area").focus();
-            return;
-        }
 
-        // 쓰기
-        $.ajax({
-            type: 'POST',
-            url: '/comments?bno='+bno,
-            headers: {"content-type" : "application/json"},
-            data : JSON.stringify({bno: bno, comment:comment}),
-            success : function (result) {
-                alert(result);
-                showList(bno); //  쓰기가 성공했을 때 보여 줄 리스트
-            },
-            error : function () {alert("error from post-comment")}
-        });
-    });
+
+    } //showList
     showList(bno);
 
 
-        // $(".delBtn").click(function () {
-        $("#commentList").on("click", ".delBtn", function () {
-            // li가 버튼의 부모
-            let cno = $(this).parent().attr("data-cno");
-            let bno = $(this).parent().attr("data-bno");
+    //댓글 내용 표시 부분을 입력 창으로 바꿈 (for modify comments)
+      function editReply(cno, comment){
 
-            $.ajax({
-                type: 'DELETE',
-                <%--url :'<c:url value="/comments/"/>',--%>
-                url: '/comments/' + cno + '?bno=' + bno,
-                success: function (result) {
-                    alert(result)
-                    // 삭제된 다음에 새로 갱신되어야 함
-                    showList(bno);
-                }
-            });
-        });
+          var tmpCo = '<div>'
+          // tmpCo += '<textarea name="editComment" id="editComment" class="form-control" rows="3">'+ comment + '</textarea>'
+          tmpCo += '<textarea class="form-control" aria-label="With textarea" id="editComment" name="editComment" rows="3">' + comment + '</textarea>'
+
+          tmpCo += '<button type="button" id="modCommentBtn" class="btn btn-modify">등록</button>'
+          // tmpCo += '<button type="button" id="delCommentBtn" class="btn btn-remove">취소</button>'
+          tmpCo += '</div>'
+
+          alert("start editRe"); /////////////for debug
+
+          $("#toReplace").replaceWith(tmpCo).html();
+          $("#editComment").focus();
+
+          // alert("finished editReply"); /////////////for debug
+
+          return $("#editComment").val();
+      } //edit reply
+
+
+
+      //댓글 쓰기 insert 부분
+      // alert 로 이벤트 작동하는지 확인해보는 것도 좋음.
+      $("#commentSendBtn").on("click",function() {
+          let comment = $("#text-comment-area").val();
+          //alert(comment); ///////for debug
+
+          if(comment.trim() === '') {
+              alert("댓글을 입력해주세요");
+              $("text-comment-area").focus();
+              return;
+          }
+
+          // 쓰기
+          $.ajax({
+              type: 'POST',
+              url: '/comments?bno='+bno,
+              headers: {"content-type" : "application/json"},
+              data : JSON.stringify({bno: bno, comment:comment}),
+              success : function (result) {
+                  alert(result);
+                  showList(bno); //  쓰기가 성공했을 때 보여 줄 리스트
+              },
+               error : function () {alert("error from post-comment")}
+          });
+      });
+
+      // 댓글 삭제
+      $("#commentList").on("click", "#delCommentBtn", function () {
+          if(!confirm("정말로 삭제하시겠습니까?")) return;
+
+          let cno = $(this).parent().attr("data-cno");
+          let bno = $(this).parent().attr("data-bno");
+
+          $.ajax({
+              type: 'DELETE',
+              url: '/comments/' + cno + '?bno=' + bno,
+              success: function (result) {
+                  alert(result);
+                  showList(bno);
+              },
+              error : function () {
+                  alert("error from delete Comment")
+              }
+          });
+      });
+
+
+      // 댓글 수정
+      $("#commentList").on("click", "#modCommentBtn", function () {
+          //if(!confirm("정말로 수정하시겠습니까?")) return;
+
+          let cno = $(this).parent().attr("data-cno");
+
+          let comment = $("span[name=commentAr]").val();
+          let comm = $("#commentContents").val();
+          let contents = $(this).parent().comment;
+          let contentp = $(this).comment;
+          let con = $(this).parent().attr("data-content");
+          let co = $(this).attr("data-content");
+
+          alert(cno); /////////////for debug
+          alert(comment);
+
+          comment = editReply(cno,comment); //입력을 띄우고 값을 가져옴
+          alert(comment); /////////////for debug
+
+          // if (comment.trim() == ''){
+          //     alert("내용을 입력하세요");
+          //     $("#commentContents").focus();
+          //     return;
+          // }
+
+
+
+          $.ajax({
+              type: 'PATCH',
+              url: '/comments/' + cno + '?bno=' + bno,
+              headers : {"content-type" : "application/json"},
+              data : JSON.stringify({cno : cno, comments:comment}),
+              success: function (result) {
+                  alert(result);
+                  showList(bno);
+              },
+              error : function() {
+                  alert("error from modify comment")
+              }
+          });
+      });
+
+      $("#commentList").on("click", ".modCommentBtn", function() {
+          let cno = $(this).parent().attr("data-cno");
+          let bno = $(this).parent().attr("data-bno");
+          let comment = $("span.comment", $(this).parent()).text();
+
+          // 1. comment의 내용을 input에 뿌려주기
+          $("span[name=comment]").val(comment);
+          // 2. cno 전달하기
+          $("#modCommentBtn").attr("data-cno", cno);
+      });
+
+
+
+
     });
 
 </script>
