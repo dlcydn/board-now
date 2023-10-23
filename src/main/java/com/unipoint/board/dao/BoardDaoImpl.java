@@ -77,6 +77,7 @@ public class BoardDaoImpl implements BoardDao {
     public int updateCommentCnt(Integer bno, int cnt) {
         Map map = new HashMap();
         map.put("cnt", cnt);
-        return session.update(namespace+"updateCommentCnt");
+        map.put("bno", bno);
+        return session.update(namespace+"updateCommentCnt", map);
     }
 }

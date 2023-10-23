@@ -25,7 +25,7 @@ public class CommentController {
     CommentService commentService;
 
     // 게시물 번호를 받으면 그 게시물에 달린 모든 댓글을 반환하는 메서드
-    @RequestMapping(value="/comments") // comments?bno=1080    ,  produces="application/json; charset=utf8"
+    @GetMapping(value="/comments") // comments?bno=1080    ,  produces="application/json; charset=utf8"
     public ResponseEntity<List<CommentDto>> list(Integer bno) {
         List<CommentDto> list = null;
 
