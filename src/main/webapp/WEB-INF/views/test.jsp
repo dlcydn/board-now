@@ -1,10 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: unipoint
-  Date: 2023-10-23
-  Time: 오전 10:45
-  To change this template use File | Settings | File Templates.
---%>
+[오전 9:47] 민경원
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -39,19 +34,6 @@ comment : <input type="text" name="comment"><br>
     $(document).ready(function(){
         showList(bno);
 
-        // 수정 버튼 -> 수정할 입력 창으로 이동하게 함
-        $("#commentList").on("click", ".modBtn", function(){    // 이방법이 동적으로 생성되는 요소에 이벤트를 거는 방법임
-            let cno = $(this).parent().attr("data-cno");        // html 태그마다 속성이 매우 많지만 "data-"를 접두사로 붙이는게 규칙임
-            let bno = $(this).parent().attr("data-bno");
-            let comment = $("span.comment", $(this).parent()).text();
-
-            // 1. 수정 버튼을 comment의 내용을 input태그에 뿌려주기
-            $("input[name=comment]").val(comment);
-            // 2. cno 전달하기
-            $("#modBtn").attr("data-cno", cno);
-        });
-
-        //수정 내용을 저장하게 함
         $("#modBtn").click(function(){
             let cno = $(this).attr("data-cno");
             let comment = $("input[name=comment]").val();
@@ -109,7 +91,7 @@ comment : <input type="text" name="comment"><br>
 
             if(comment.trim()==''){
                 alert("댓글을 입력하세요");
-                $("input[name=comment").focus()
+                $("input[name=comment]").focus()
                 return;
             }
 
@@ -126,7 +108,19 @@ comment : <input type="text" name="comment"><br>
             }); // $.ajax()
         });
 
-        //답글 버튼
+        // 수정 버튼
+        $("#commentList").on("click", ".modBtn", function(){    // 이방법이 동적으로 생성되는 요소에 이벤트를 거는 방법임
+            let cno = $(this).parent().attr("data-cno");        // html 태그마다 속성이 매우 많지만 "data-"를 접두사로 붙이는게 규칙임
+            let bno = $(this).parent().attr("data-bno");
+            let comment = $("span.comment", $(this).parent()).text();
+
+            // 1. 수정 버튼을 comment의 내용을 input태그에 뿌려주기
+            $("input[name=comment]").val(comment);
+            // 2. cno 전달하기
+            $("#modBtn").attr("data-cno", cno);
+        });
+
+        // 답글(대댓글) 버튼
         $("#commentList").on("click", ".replyBtn", function(){
             // 1. replyForm을 댓글 아래위치에 옮기고
             $("#replyForm").appendTo($(this).parent());
@@ -179,4 +173,3 @@ comment : <input type="text" name="comment"><br>
 </script>
 </body>
 </html>
-

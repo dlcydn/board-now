@@ -50,8 +50,12 @@ public class CommentDaoImpl implements CommentDao {
     }
 
     @Override
-    public int update(CommentDto commentDto) throws Exception {
-        return session.update(namespace + "update" + commentDto);
-    }
+    public int update(CommentDto dto) throws Exception {
+        return session.update(namespace+"update", dto);
+    } // int update(String statement, Object parameter)
+    //매개변수나 반환 값으로 받는 객체 이름을 일치 시켜줘야함.
+    //CommentDto 의 dto 라는 이름으로 사용하기로했으니까 Controller에서도 같은 이름으로 사용해야함.
+
+
 
 }

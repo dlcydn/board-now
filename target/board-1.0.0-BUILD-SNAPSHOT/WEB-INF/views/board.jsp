@@ -81,8 +81,9 @@
         <div id="c-username"><span><i class="bi bi-chat-left-dots"></i></span><span id="commenter-area">${boardDto.writer}</span></div>
         <div class="input-group">
             <span class="input-group-text">댓글 쓰기</span>
-            <textarea class="form-control" aria-label="With textarea" id="text-comment-area" rows="3" placeholder="내용을 입력하세요."></textarea>
+            <textarea class="form-control" aria-label="With textarea" id="text-comment-area" rows="3" name="commentArea" placeholder="내용을 입력하세요."></textarea>
             <button class="btn btn-outline-secondary" type="button" id="commentSendBtn">등록</button>
+            <button type="button" id="modConfirmBtn"> 수정 등록</button>
         </div>
     </div>
 </div>
@@ -103,8 +104,6 @@
     </div>
 </div>
 
-<textarea name="modifyContent" style="display:none" ></textarea>
-<button id="modConfirmBtn" style="display:none" >수정 등록</button></div>
 <br>
 
 <%--    <div class="comment-rset" >--%>
@@ -123,6 +122,58 @@
     //가능하면 하나 안에 전부 작성!
     //document ready는 처음 화면 띄울 때 함수 전부 가지고 오므로 전체에서 한번만 사용하거나
     //script 전체에서 변수명으로 함수 선언해서 사용 하는 식으로 해야함.
+
+    let bno = ${boardDto.bno};
+
+    //댓글 전부 가져오기
+    let showList = function (bno) {
+        $.ajax({
+            type:'GET',       // 요청 메서드
+            url: '/comments?bno='+bno,  // 요청 url
+            dataType : 'json', // 전송받을 데이터의 타입, 생략해도 됨: 기본이 json
+            success : function(result) {
+                // result가 오면 commentList에 담기
+                // 댓글목록 가져온 것을 commmentList에 담게 됨
+                // 들어오는 배열을 toHtml이라는 함수를 이용해서 태그 만든 다음 commentList에 넣는다.
+                $("#commentList").html(toHtml(result));
+            },
+            error : function(){ alert("error from showList") } // 에러가 발생했을 때, 호출될 함수
+        }); // $.ajax()
+    } //showList
+
+    //댓글 부분 띄워주기 위한 내용
+    let toHtml = function (comments) {
+        var tmp = "<div class='comment-rset'>";
+        // var isWriter = comments.commenter;
+
+        // 댓글 하나하나 들고와서 tmp에 쌓는다.
+        comments.forEach(function (comment) {
+            tmp += '<div data-cno=' + comment.cno
+            tmp += ' data-pcno=' + comment.pcno
+            tmp += ' data-bno=' + comment.bno
+            // tmp += 'data-comment'+ comment.comment
+            tmp += '>'
+
+            // span태그에 넣어야 나중에 작성자만 따로 읽어오기 쉽다.
+            tmp += '<div id="c-username" class="commenter"><i class="bi bi-reply"></i> ' + comment.commenter + '</div>'
+            tmp += '<div class="comment" id="textComment" style="display: block"><span id="commentContents" class="comments">' + comment.comment + '</span></div>'
+            // tmp += '<div id ="modifyText" style="display : none"><textarea name="modifyContent"></textarea>'+
+            //     '<button id="modConfirmBtn">' + '수정 등록</button></div>'
+            tmp += '<div><p class="btns-l">' + comment.up_date + '</p></div>'
+            tmp += '<p><btn class="btns-l" id="wriReplyBtn" > 답글달기 </btn></p>'
+
+            tmp += '<button type="button" id="modCommentBtn" class="btn btn-modify">수정</button>'
+            tmp += '<button type="button" id="delCommentBtn" class="btn btn-remove">삭제</button>'
+
+            tmp += '</div>'
+            tmp += '<br>'
+
+
+        }) //each
+        tmp += '</div>'
+        return tmp; // div html로 반환한다.
+
+    } //toHtml
 
     $(document).ready(function(){
 
@@ -192,102 +243,50 @@
 
         // -------------------------------------------------- comments ------------------------------------------------
 
-        let bno = ${boardDto.bno};
-
-        // 댓글 가져오기 함수
-        let showList = function (bno) {
-            $.ajax({
-                type:'GET',       // 요청 메서드
-                url: '/comments?bno='+bno,  // 요청 url
-                dataType : 'json', // 전송받을 데이터의 타입, 생략해도 됨: 기본이 json
-                success : function(result) {
-                    // result가 오면 commentList에 담기
-                    // 댓글목록 가져온 것을 commmentList에 담게 됨
-                    // 들어오는 배열을 toHtml이라는 함수를 이용해서 태그 만든 다음 commentList에 넣는다.
-                    $("#commentList").html(toHtml(result));
-                },
-                error : function(){ alert("error from showList") } // 에러가 발생했을 때, 호출될 함수
-            }); // $.ajax()
-
-        // 댓글 수정 입력 창으로 이동
-        $("#commentList").on("click", "#modCommentBtn", function () {
-
-            let cno = $(this).parent().attr("data-cno");
-            let comment = $("span.comments", $(this).parent()).text();
-
-            //기본 댓글 부문 비표시
-            $("#textComment").append($(this)).parent();
-            $("#textComment").css("display", "none");
-
-            //입력 창 표시
-            $("#modifyText").append($(this)).parent();
-            $("#modifyText").css("display","block");
-            $("textarea[name=modifyContent]").val(comment);
-            $("#modifyText").attr("data-cno",cno);
-
-        });
+        showList(bno);
 
         // 수정 등록 버튼
-        $("#commentList").on("click", "#modConfirmBtn", function() {
-            let cno = $(this).parent().attr("data-cno");
-            let bno = $(this).parent().attr("data-bno");
-            let comment = $("textarea[name=modifyContent]").val();
+        $("#modConfirmBtn").on("click", function() {
+            let cno = $(this).attr("data-cno");
+            let comment = $("textarea[name=commentArea]").val();
 
             if(comment.trim()==''){
                 alert("댓글을 입력하세요");
-                $("textarea[name=modifyContent]").focus();
+                $("textarea[name=commentArea]").focus();
                 return;
             }
 
             $.ajax({
                 type:'PATCH',       // 요청 메서드
-                url: '/board/comments/' +cno,  // 요청 URI
+                url: '/comments/'+cno,  // 요청 URI
                 headers : { "content-type": "application/json"}, // 요청 헤더
-                data : JSON.stringify({cno:cno, comment:comment}),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
+                data : JSON.stringify({cno:cno, comment:comment}),// 서버로 전송할 데이터. stringify()로 직렬화 필요.
                 success : function(result){
                     alert(result);
                     showList(bno);
                 },
-                error   : function(){ alert("error from sendBtn") } // 에러가 발생했을 때, 호출될 함수
+                error   : function(){
+                    alert(cno + ' : cno ajax');
+                    alert(comment + ': comment ajax');
+                    alert("error from modify")
+                } // 에러가 발생했을 때, 호출될 함수
             }); // $.ajax()
-        });
+        }); //modify btn
 
-            //댓글 부분 띄워주기 위한 내용
-            let toHtml = function (comments) {
-                var tmp = "<div class='comment-rset'>";
-                // var isWriter = comments.commenter;
+        // 수정 버튼
+        $("#commentList").on("click", "#modCommentBtn", function () {
 
-                    // 댓글 하나하나 들고와서 tmp에 쌓는다.
-                    comments.forEach(function (comment) {
-                        tmp += '<div data-cno=' + comment.cno
-                        tmp += ' data-pcno=' + comment.pcno
-                        tmp += ' data-bno=' + comment.bno
-                        // tmp += 'data-comment'+ comment.comment
-                        tmp += '>'
+            let cno = $(this).parent().attr("data-cno");
+            let bno = $(this).parent().attr("data-bno");
+            let comment = $("span.comments", $(this).parent()).text();
 
-                        // span태그에 넣어야 나중에 작성자만 따로 읽어오기 쉽다.
-                        tmp += '<div id="c-username" class="commenter"><i class="bi bi-reply"></i> ' + comment.commenter + '</div>'
-                        tmp += '<div class="comment" id="textComment" style="display: block"><span id="commentContents" class="comments">' + comment.comment + '</span></div>'
-                        tmp += '<div id ="modifyText" style="display : none"><textarea name="modifyContent"></textarea>'+
-                            '<button id="modConfirmBtn">' + '수정 등록</button></div>'
-                        tmp += '<div><p class="btns-l">' + comment.up_date + '</p></div>'
-                        tmp += '<p><btn class="btns-l" id="wriReplyBtn" > 답글달기 </btn></p>'
-
-                        tmp += '<button type="button" id="modCommentBtn" class="btn btn-modify">수정</button>'
-                        tmp += '<button type="button" id="delCommentBtn" class="btn btn-remove">삭제</button>'
-
-                        tmp += '</div>'
-                        tmp += '<br>'
+            // 1. 수정 버튼을 comment의 내용을 input태그에 뿌려주기
+            $("textarea[name=commentArea]").val(comment);
+            // 2. cno 전달하기
+            $("#modConfirmBtn").attr("data-cno", cno);
+        }); //move cursor to modify
 
 
-                    }) //each
-                    tmp += '</div>'
-                return tmp; // div html로 반환한다.
-
-            } //toHtml
-
-        } //showList
-        showList(bno);
 
         //댓글 쓰기 insert 부분
         // alert 로 이벤트 작동하는지 확인해보는 것도 좋음.
@@ -297,11 +296,10 @@
 
             if(comment.trim() === '') {
                 alert("댓글을 입력해주세요");
-                $("text-comment-area").focus();
+                $("#text-comment-area").focus();
                 return;
             }
 
-            // 쓰기
             $.ajax({
                 type: 'POST',
                 url: '/comments?bno='+bno,
@@ -313,7 +311,7 @@
                 },
                 error : function () {alert("error from post-comment")}
             });
-        });
+        }); //write comment
 
         // 댓글 삭제
         $("#commentList").on("click", "#delCommentBtn", function () {
@@ -333,7 +331,7 @@
                 error : function () {
                     alert("error from delete Comment")
                 }
-            });
+            }); //delete comment
         });
 
         //답글 작성 입력창 표시
@@ -341,7 +339,7 @@
             $("#replyList").append($(this)).parent();
             $("#replyList").css("display", "block");
         })
-    });
+    }); //document ready
 
 </script>
 
