@@ -3,8 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.unipoint.board.dao.BoardMapper">
-<!--    the SQL Commands that want run -->
-    
+
     <select id="count" resultType="int">
         SELECT count(*) FROM board
     </select>
@@ -13,7 +12,7 @@
         DELETE FROM board
     </delete>
 
-    <delete id="delete" parameterType="int">
+    <delete id="delete" parameterType="map">
         DELETE FROM board WHERE bno = #{bno} and writer = #{writer}
     </delete>
 
@@ -25,13 +24,13 @@
     </insert>
 
     <select id="selectAll" resultType="BoardDto">
-        SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date, up_date
+        SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date
         FROM board
         ORDER BY reg_date DESC, bno DESC
     </select>
 
     <sql id="selectFromBoard">
-        SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date, up_date
+        SELECT bno, title, content, writer, view_cnt, comment_cnt, reg_date
         FROM board
     </sql>
 
@@ -51,12 +50,6 @@
         SET   title = #{title}
           , content = #{content}
           , up_date = now()
-        WHERE bno = #{bno}
-    </update>
-
-    <update id="updateCommentCnt" parameterType="map">
-        UPDATE board
-        SET   comment_cnt = comment_cnt + #{cnt}
         WHERE bno = #{bno}
     </update>
 
@@ -96,4 +89,10 @@
         WHERE true
         <include refid="searchCondition"/>
     </select>
+
+    <update id="updateCommentCnt" parameterType="map">
+        UPDATE board
+        SET comment_cnt = comment_cnt + #{cnt}
+        WHERE bno = #{bno}
+    </update>
 </mapper>

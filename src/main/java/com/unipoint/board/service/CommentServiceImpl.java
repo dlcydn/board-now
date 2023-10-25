@@ -42,13 +42,13 @@ public class CommentServiceImpl implements CommentService {
     public int write(CommentDto commentDto) throws Exception {
         boardDao.updateCommentCnt(commentDto.getBno(), 1);
 //                throw new Exception("test");
-        return commentDao.insertCno(commentDto);
+        return commentDao.insert(commentDto);
     }
 
     @Override
     public List<CommentDto> getList(Integer bno) throws Exception {
 //        throw new Exception("test");
-        return commentDao.selectCnoAll(bno);
+        return commentDao.selectAll(bno);
     }
 
     @Override

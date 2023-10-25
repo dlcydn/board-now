@@ -11,8 +11,7 @@ public class CommentDto {
     private Date    reg_date;
     private Date    up_date;
 
-    public CommentDto() { }
-
+    public CommentDto() {}
     public CommentDto(Integer bno, Integer pcno, String comment, String commenter) {
         this.bno = bno;
         this.pcno = pcno;
@@ -101,6 +100,4 @@ public class CommentDto {
                 ", up_date=" + up_date +
                 '}';
     }
-
-
 }

@@ -1,6 +1,7 @@
 package com.unipoint.board.service;
 
 import com.unipoint.board.domain.*;
+
 import java.util.*;
 
 public interface BoardService {

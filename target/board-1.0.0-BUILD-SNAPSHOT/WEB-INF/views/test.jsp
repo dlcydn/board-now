@@ -152,6 +152,7 @@ comment : <input type="text" name="comment"><br>
         let tmp = "<ul>";
 
         comments.forEach(function(comment) {
+
             tmp += '<li data-cno=' + comment.cno;
             tmp += ' data-pcno=' + comment.pcno;
             tmp += ' data-bno=' + comment.bno + '>';
