@@ -1,4 +1,5 @@
 <%@ page import="com.unipoint.board.domain.BoardDto" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -107,34 +108,17 @@
 
 <%-- -------------------------------------------------------------------------------------------------------------------------- --%>
 
-<%--<%--%>
-<%--    // BoardDto 객체를 어딘가에서 생성하고 bno 값을 설정한다고 가정합니다.--%>
-<%--    BoardDto boardDto = new BoardDto();--%>
-
-<%--    // 이제 bno 값을 출력할 수 있습니다.--%>
-<%--    Integer bno = boardDto.getBno();--%>
-<%--%>--%>
-
 <script>
     //가능하면 하나 안에 전부 작성!
     //document ready는 처음 화면 띄울 때 함수 전부 가지고 오므로 전체에서 한번만 사용하거나
     //script 전체에서 변수명으로 함수 선언해서 사용 하는 식으로 해야함.
 
-    <%
-    // BoardDto 객체를 어딘가에서 생성하고 bno 값을 설정한다고 가정합니다.
-    BoardDto boardDto = new BoardDto();
+    let bno = "${boardDto.bno}";
 
-    // 이제 bno 값을 출력할 수 있습니다.
-    Integer bno = boardDto.getBno();
-    %>
-
-    let Bno = <%= bno %>;      // getBno() 메서드를 사용하여 bno 값을 불러옴--%>
-    // console.log("JavaScript에서 bno 값: " + bno);
-
-    // let cbno = bno;
-
-    //댓글 전부 가져오기
     let showList = function (bno) {
+        <%--let bno = {"bno" : "${boardDto.bno}"};--%>
+
+
         $.ajax({
             type:'GET',       // 요청 메서드
             url: '/comments?bno='+bno,  // 요청 url
@@ -146,8 +130,8 @@
                 $("#commentList").html(toHtml(result));
             },
             error : function(){
-                // alert(bno);
-                alert(Bno);
+                // alert(bno + " : showList bno");
+                alert(bno + " : showList Bno");
                 // alert(cbno);
                 alert("error from showList");
             } // 에러가 발생했을 때, 호출될 함수
@@ -196,7 +180,6 @@
                 tmp += '<br>'
             }
 
-
         }); //each
         tmp += '</div>'
         tmp += '<br>'
@@ -222,14 +205,12 @@
             return true;
         }
 
-        <%--$("#writeNewBtn").on("click", function(){--%>
-        <%--    alert("new write btn!");--%>
-        <%--    location.href="<c:url value='/board/write'/>";--%>
-        <%--});--%>
+        $("#writeNewBtn").on("click", function(){
+            alert("new write btn!");
+            location.href="<c:url value='/board/write'/>";
+        });
 
         $("#writeBtn").on("click", function(){
-            alert("write btn!");
-
             let form = $("#form");
             form.attr("action", "<c:url value='/board/write'/>");
             form.attr("method", "post");
@@ -272,12 +253,89 @@
             location.href="<c:url value='/board/list${searchCondition.queryString}'/>";
         });
 
-
-
+        // ------------------------------------------------------------------------------------------------------------
         // -------------------------------------------------- comments ------------------------------------------------
+        // ------------------------------------------------------------------------------------------------------------
 
-        alert(Bno + "Before show");
-        showList(Bno);
+        <%--let Bno = <%= cbno %>;--%>
+        <%--let Bno = <%= bdto.getBno() %>;--%>
+        <%--let bno = ${boardDto.bno};--%>
+        <%--let bno = <%= bbno %>;--%>
+        <%--let bno = {"bno" : "${boardDto.bno}"};--%>
+
+        // console.log("JavaScript에서 bno 값: " + bno);
+
+        <%--let showList = function () {--%>
+        <%--    let bno = {"bno" : "${boardDto.bno}"};--%>
+
+        <%--    $.ajax({--%>
+        <%--        type:'GET',       // 요청 메서드--%>
+        <%--        url: '/comments?bno='+bno,  // 요청 url--%>
+        <%--        dataType : 'json', // 전송받을 데이터의 타입, 생략해도 됨: 기본이 json--%>
+        <%--        success : function(result) {--%>
+        <%--            // result가 오면 commentList에 담기--%>
+        <%--            // 댓글목록 가져온 것을 commmentList에 담게 됨--%>
+        <%--            // 들어오는 배열을 toHtml이라는 함수를 이용해서 태그 만든 다음 commentList에 넣는다.--%>
+        <%--            $("#commentList").html(toHtml(result));--%>
+        <%--        },--%>
+        <%--        error : function(){--%>
+        <%--            // alert(bno + " : showList bno");--%>
+        <%--            alert(bno + " : showList Bno");--%>
+        <%--            // alert(cbno);--%>
+        <%--            alert("error from showList");--%>
+        <%--        } // 에러가 발생했을 때, 호출될 함수--%>
+        <%--    }); // $.ajax()--%>
+        <%--} //showList--%>
+
+        <%--//댓글 부분 띄워주기 위한 내용--%>
+        <%--let toHtml = function (comments) {--%>
+        <%--    var tmp = "<br><div class='comment-rset'>";--%>
+
+        <%--    // 댓글 하나하나 들고와서 tmp에 쌓는다.--%>
+        <%--    comments.forEach(function (comment) {--%>
+        <%--        tmp += '<div data-cno=' + comment.cno--%>
+        <%--        tmp += ' data-pcno=' + comment.pcno--%>
+        <%--        tmp += ' data-bno=' + comment.bno--%>
+        <%--        // tmp += 'data-comment'+ comment.comment--%>
+        <%--        tmp += '>'--%>
+
+        <%--        if(comment.cno != comment.pcno) { //댓글의 답글일 경우--%>
+        <%--            tmp += '<div id="c-username" class="commenter"><i class="bi bi-reply" style="padding-left: 50px;"></i> ' + comment.commenter + '</div>'--%>
+        <%--            tmp += '<div class="comment" id="textComment" style="display: block; padding-left: 100px;"><span id="commentContents" class="comments">'--%>
+        <%--                + comment.comment + '</span></div>'--%>
+        <%--            tmp += '<div style="padding-left: 50px;"><p class="btns-l">' + comment.up_date + '</p></div>'--%>
+        <%--            tmp += '<button type="button" id="delCommentBtn" >삭제</button>'--%>
+        <%--            tmp += '<button type="button" class="btns-l" id="wriReplyBtn" > 답글달기 </button><br>'--%>
+        <%--            tmp += '</div>'--%>
+        <%--            tmp += '<hr>'--%>
+        <%--            tmp += '<br>'--%>
+
+        <%--        } else { //일반 댓글--%>
+        <%--            // span태그에 넣어야 나중에 작성자만 따로 읽어오기 쉽다.--%>
+        <%--            tmp += '<div id="c-username" class="commenter"><i class="bi bi-reply"></i> ' + comment.commenter + '</div>'--%>
+        <%--            tmp += '<div class="comment" id="textComment" style="display: block"><span id="commentContents" class="comments">'--%>
+        <%--                + comment.comment + '</span></div>'--%>
+        <%--            // tmp += '<div id ="modifyText" style="display : none"><textarea name="modifyContent"></textarea>'+--%>
+        <%--            //     '<button id="modConfirmBtn">' + '수정 등록</button></div>'--%>
+        <%--            tmp += '<div><p class="btns-l">' + comment.up_date + '</p></div>'--%>
+        <%--            tmp += '<button type="button" class="btns-l" id="wriReplyBtn" > 답글달기 </button><br>'--%>
+
+        <%--            tmp += '<button type="button" id="modCommentBtn" class="btn btn-modify">수정</button>'--%>
+        <%--            tmp += '<button type="button" id="delCommentBtn" class="btn btn-remove">삭제</button>'--%>
+
+        <%--            tmp += '<br></div>'--%>
+        <%--            tmp += '<hr>'--%>
+
+        <%--            tmp += '<br>'--%>
+        <%--        }--%>
+
+        <%--    }); //each--%>
+        <%--    tmp += '</div>'--%>
+        <%--    tmp += '<br>'--%>
+        <%--    return tmp; // div html로 반환한다.--%>
+        <%--} //toHtml--%>
+
+        showList(bno);
 
         // 수정 등록 버튼
         $("#modConfirmBtn").on("click", function() {
@@ -325,7 +383,7 @@
         // alert 로 이벤트 작동하는지 확인해보는 것도 좋음.
         $("#commentSendBtn").on("click",function() {
             let comment = $("#text-comment-area").val();
-            //alert(comment); ///////for debug
+            alert(comment + " : comment insert "); ///////for debug
 
             if(comment.trim() === '') {
                 alert("댓글을 입력해주세요");
@@ -393,9 +451,9 @@
                     showList(bno);
                 },
                 error   : function(){
-                    alert(bno);
-                    alert(pcno);
-                    alert(comment);
+                    // alert(bno);
+                    // alert(pcno);
+                    // alert(comment);
                     alert("error from reply");
                 } // 에러가 발생했을 때, 호출될 함수
             }); // $.ajax()

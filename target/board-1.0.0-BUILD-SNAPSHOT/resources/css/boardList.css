@@ -116,10 +116,11 @@ td {
 }
 
 .no      { width: 10%;}
-.title   { width: 40%;  }
-.regdate { width: 20% }
-.writer { width: 20% }
-.viewcnt { width: 10% }
+.title   { width: 30%;  }
+.regdate { width: 15%; }
+.writer { width: 10%; }
+.viewcnt { width: 10%; }
+.commentcnt { width: 10%; }
 
 
 /*td.title   { text-align: left;  }*/

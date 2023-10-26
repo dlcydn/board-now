@@ -66,6 +66,7 @@ public class BoardController {
 
     @GetMapping("/read")
     public String read(Integer bno, SearchCondition sc, RedirectAttributes rattr, Model m) {
+
         try {
             BoardDto boardDto = boardService.read(bno);
             m.addAttribute(boardDto);

@@ -58,6 +58,7 @@
           <th class="writer">이름</th> <!-- name -->
           <th class="regdate">등록일</th> <!-- register date -->
           <th class="viewcnt">조회수</th> <!-- view count -->
+          <th class="commentcnt">댓글수</th>  <!--comment count -->
         </tr>
       </thead>
       <c:forEach var="boardDto" items="${list}">  <%-- varStatus = "status" --%>
@@ -75,6 +76,7 @@
             </c:otherwise>
           </c:choose>
           <td class="viewcnt">${boardDto.view_cnt}</td>
+          <td class="commentcnt">${boardDto.comment_cnt}</td>
         </tr>
       </c:forEach>
     </table>
