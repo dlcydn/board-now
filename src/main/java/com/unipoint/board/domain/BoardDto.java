@@ -74,11 +74,9 @@ public class BoardDto {
     public void setReg_date(Date reg_date) {
         this.reg_date = reg_date;
     }
-
     public Date getUp_date() {
         return up_date;
     }
-
     public void setUp_date(Date up_date) {
         this.up_date = up_date;
     }

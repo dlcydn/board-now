@@ -1,6 +1,7 @@
 package com.unipoint.board.controller;
 
 import java.net.URLEncoder;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +27,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.unipoint.board.domain.User;
 import com.unipoint.board.domain.UserValidator;
 
+import static org.apache.ibatis.ognl.Ognl.setValue;
+import java.beans.PropertyEditorSupport;
+
 @Controller // ctrl+shift+o auto import
 @RequestMapping("/register")
 public class RegisterController {
@@ -38,18 +42,17 @@ public class RegisterController {
 	@InitBinder
 	public void toDate(WebDataBinder binder) {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		df.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(df, false));
-		binder.setValidator(new UserValidator()); //register the UserValidator to WebDataBinder's local validator
-	//	List<Validator> validatorList = binder.getValidators();
-	//	System.out.println("validatorList="+validatorList);
+		binder.setValidator(new UserValidator()); // UserValidator를 WebDataBinder의 로컬 validator로 등록
 	}
-	
+
 	@GetMapping("/add")
 	public String register() {
 
 		return "registerForm"; // WEB-INF/views/registerForm.jsp
 	}
-	
+
 	@PostMapping("/add")
 	public String save(@Valid User user, BindingResult result, Model m) throws Exception {
 		System.out.println("result="+result);

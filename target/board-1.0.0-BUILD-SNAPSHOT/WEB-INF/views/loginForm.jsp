@@ -4,7 +4,7 @@
 <c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
 <c:set var="loginId" value="${pageContext.request.getSession(false) == null ? '' : pageContext.request.getSession.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
-<c:set var="loginOut" value="${loginId=='' ? 'Login' : 'ID:'+=loginId}"/>
+<c:set var="loginOut" value="${loginId=='' ? 'Login' : 'LogOut'}"/>
 <!DOCTYPE html>
 <html>
 <head>

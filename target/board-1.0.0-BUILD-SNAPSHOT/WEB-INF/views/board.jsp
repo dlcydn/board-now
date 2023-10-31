@@ -6,18 +6,16 @@
 <%@ page session="true"%>
 <c:set var="loginId" value="${sessionScope.id}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
-<c:set var="loginOut" value="${loginId=='' ? 'Login' : 'ID:'+=loginId}"/>
+<c:set var="loginOut" value="${loginId=='' ? 'Login' : 'LogOut'}"/>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Bulletine Board Basic</title>
-    <%--  <link rel="stylesheet" href="<c:url value='/css/menu.css'/>">--%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <%--    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>--%>
     <link rel="stylesheet" href="<c:url value='/css/post.css'/>">
 
 </head>
@@ -35,19 +33,22 @@
 
     <div class="container">
         <div>
-            <%--      <div id="t" class="head-title"><h4>게시판 ${mode=="new" ? "글쓰기" : "읽기"}</h4></div>--%>
-
             <input name="title" type="text" class="title-input" value="${boardDto.title}" placeholder="  제목을 입력해 주세요." ${mode=="new" ? "" : "readonly='readonly'"}><br>
-
-            <div id="contents-d">
-                <span><i class="bi bi-person"></i> ${boardDto.writer}</span>
-                <span><i class="bi bi-calendar-check"></i> <fmt:formatDate value="${boardDto.reg_date}" pattern="yyyy-MM-dd" type="date"/></span>
-            </div>
-            <div class="right-side">
-                <span><i class="bi bi-arrow-clockwise"></i> <fmt:formatDate value="${boardDto.up_date}" pattern="yyyy-MM-dd" type="date"/></span>
-                <span><i class="bi bi-eye"></i> ${boardDto.view_cnt}</span>
-                <span><i class="bi bi-chat-left-text"></i> ${boardDto.comment_cnt}</span>
-            </div>s
+            <c:choose>
+                <c:when test="${mode eq 'new'}"></c:when>
+                <c:otherwise>
+                    <div id="contents-d">
+                        <span><i class="bi bi-person"></i> ${boardDto.writer}</span>
+                        <span><i class="bi bi-calendar-check"></i> <fmt:formatDate value="${boardDto.reg_date}" pattern="yyyy-MM-dd" type="date"/></span>
+                    </div>
+                    <div class="right-side">
+<%--                        <span><i class="bi bi-arrow-clockwise"></i>${boardDto.up_date}</span>--%>
+                        <span><i class="bi bi-arrow-clockwise"></i> <fmt:formatDate value="${boardDto.up_date}" pattern="yyyy-MM-dd" type="date"/></span>
+                        <span><i class="bi bi-eye"></i> ${boardDto.view_cnt}</span>
+                        <span><i class="bi bi-chat-left-text"></i> ${boardDto.comment_cnt}</span>
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </div> <!-- title area -->
 
         <br>
@@ -65,44 +66,50 @@
         </c:if>
         <button type="button" id="listBtn" class="btn btn-list"><i class="fa fa-bars"></i> 목록</button> <!-- list -->
     </div>
-        <br>
+    <br>
 </form>
 
-<hr id="line"> <%-- ------------------------------Comments-------------------------------- --%>
+ <%-- ------------------------------Comments-------------------------------- --%>
 
 
 <%-- 댓글 입력 창 구간 --%>
-<div class="comment">
-    <div class="comment-wset">
-        <div id="c-username"><span><i class="bi bi-chat-left-dots"></i></span><span id="commenter-area">${boardDto.writer}</span></div>
-        <div class="input-group">
-            <span class="input-group-text">댓글 쓰기</span>
-            <textarea class="form-control" aria-label="With textarea" id="text-comment-area" rows="3" name="commentArea" placeholder="내용을 입력하세요."></textarea>
-            <button class="btn btn-outline-secondary" type="button" id="commentSendBtn">등록</button>
-            <button type="button" id="modConfirmBtn"> 수정 등록</button>
+<div class="container">
+    <hr id="line">
+    <div class="comment">
+        <div class="comment-wset">
+            <div id="c-username"><span><i class="bi bi-chat-left-dots"></i></span><span id="commenter-area">${loginId}</span></div>
+            <div class="input-group">
+                <span class="input-group-text">댓글 쓰기</span>
+                <textarea class="form-control" aria-label="With textarea" id="text-comment-area" rows="3" name="commentArea" placeholder="내용을 입력하세요."></textarea>
+                <button class="btn btn-outline-secondary" type="button" id="commentSendBtn">등록</button>
+            </div>
         </div>
     </div>
-</div>
-<hr>
+    <hr>
 
-<%-- 댓글 표시 구간 --%>
-<div class="comment">
-    <div id="commentList"></div>
-</div>
+    <%-- 댓글 표시 구간 --%>
+        <div id="commentList"></div>
 
-<%-- 답글 등록 및 표시 구간 --%>
-<div id="replyForm" style="display: none">
-    <div class="comment-reply" >
-        <div><input type="text" name="replyText"></div>
-        <div>
-            <p><button class="btns-l">삭제</button></p>
-            <p><buttton id="replyConfirmBtn" type="button">답글 등록</buttton></p>
-        </div>
-        <br>
+<%--    댓글 수정 입력창 표시 구간 --%>
+    <div id ="modifyText" style="display : none" style="display: none">
+        <textarea name="modifyContent"></textarea>
+        <button id="modConfirmBtn" type="button">수정 등록</button>
     </div>
-</div>
 
-<br>
+    <%-- 답글 등록 및 표시 구간 --%>
+    <div id="replyForm" style="display: none">
+        <div class="comment-reply" >
+            <div><input type="text" name="replyText"></div>
+            <div>
+                <p><button class="btns-l">삭제</button></p>
+                <p><buttton id="replyConfirmBtn" type="button">답글 등록</buttton></p>
+            </div>
+            <br>
+        </div>
+    </div>
+
+    <br>
+</div>
 
 
 
@@ -116,8 +123,6 @@
     let bno = "${boardDto.bno}";
 
     let showList = function (bno) {
-        <%--let bno = {"bno" : "${boardDto.bno}"};--%>
-
 
         $.ajax({
             type:'GET',       // 요청 메서드
@@ -127,7 +132,7 @@
                 // result가 오면 commentList에 담기
                 // 댓글목록 가져온 것을 commmentList에 담게 됨
                 // 들어오는 배열을 toHtml이라는 함수를 이용해서 태그 만든 다음 commentList에 넣는다.
-                $("#commentList").html(toHtml(result));
+                $("#commentList").html(toHtml(result, "${loginId}"));
             },
             error : function(){
                 // alert(bno + " : showList bno");
@@ -139,7 +144,7 @@
     } //showList
 
     //댓글 부분 띄워주기 위한 내용
-    let toHtml = function (comments) {
+    let toHtml = function (comments, loginId) {
         var tmp = "<br><div class='comment-rset'>";
 
         // 댓글 하나하나 들고와서 tmp에 쌓는다.
@@ -147,15 +152,17 @@
             tmp += '<div data-cno=' + comment.cno
             tmp += ' data-pcno=' + comment.pcno
             tmp += ' data-bno=' + comment.bno
-            // tmp += 'data-comment'+ comment.comment
             tmp += '>'
 
             if(comment.cno != comment.pcno) { //댓글의 답글일 경우
                 tmp += '<div id="c-username" class="commenter"><i class="bi bi-reply" style="padding-left: 50px;"></i> ' + comment.commenter + '</div>'
                 tmp += '<div class="comment" id="textComment" style="display: block; padding-left: 100px;"><span id="commentContents" class="comments">'
                     + comment.comment + '</span></div>'
-                tmp += '<div style="padding-left: 50px;"><p class="btns-l">' + comment.up_date + '</p></div>'
-                tmp += '<button type="button" id="delCommentBtn" >삭제</button>'
+                tmp += '<div style="padding-left: 50px;"><p class="btns-l">' + formatDateString(comment.up_date) + '</p></div>'
+<%--                <fmt:formatDate value="${comment.reg_date}" pattern="yyyy-MM-dd" type="date"/>--%>
+                if (loginId === comment.commenter) {
+                    tmp += '<button type="button" id="delCommentBtn" >삭제</button>'
+                }
                 tmp += '<button type="button" class="btns-l" id="wriReplyBtn" > 답글달기 </button><br>'
                 tmp += '</div>'
                 tmp += '<hr>'
@@ -164,16 +171,15 @@
             } else { //일반 댓글
                 // span태그에 넣어야 나중에 작성자만 따로 읽어오기 쉽다.
                 tmp += '<div id="c-username" class="commenter"><i class="bi bi-reply"></i> ' + comment.commenter + '</div>'
-                tmp += '<div class="comment" id="textComment" style="display: block"><span id="commentContents" class="comments">'
+                tmp += '<div class="comment" id="textComment"><span id="commentContents" class="comments" style="display: block">'
                     + comment.comment + '</span></div>'
-                // tmp += '<div id ="modifyText" style="display : none"><textarea name="modifyContent"></textarea>'+
-                //     '<button id="modConfirmBtn">' + '수정 등록</button></div>'
-                tmp += '<div><p class="btns-l">' + comment.up_date + '</p></div>'
+
+                tmp += '<div><p class="btns-l">' + formatDateString(comment.up_date) + '</p></div>'
                 tmp += '<button type="button" class="btns-l" id="wriReplyBtn" > 답글달기 </button><br>'
-
-                tmp += '<button type="button" id="modCommentBtn" class="btn btn-modify">수정</button>'
-                tmp += '<button type="button" id="delCommentBtn" class="btn btn-remove">삭제</button>'
-
+                if (loginId === comment.commenter) {
+                    tmp += '<button type="button" id="modCommentBtn" class="btn btn-modify">수정</button>'
+                    tmp += '<button type="button" id="delCommentBtn" class="btn btn-remove">삭제</button>'
+                }
                 tmp += '<br></div>'
                 tmp += '<hr>'
 
@@ -186,6 +192,15 @@
         return tmp; // div html로 반환한다.
     } //toHtml
 
+    //댓글 및 답글의 날짜 표시 형식 조정
+    function formatDateString (dataString) {
+        const date = new Date(dataString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth()+1).padStart(2,'0');
+        const day = String(date.getDate()).padStart(2,'0');
+        let all = year + "-" + month + "-" + day;
+        return all;
+    }
 
     $(document).ready(function(){
 
@@ -257,94 +272,16 @@
         // -------------------------------------------------- comments ------------------------------------------------
         // ------------------------------------------------------------------------------------------------------------
 
-        <%--let Bno = <%= cbno %>;--%>
-        <%--let Bno = <%= bdto.getBno() %>;--%>
-        <%--let bno = ${boardDto.bno};--%>
-        <%--let bno = <%= bbno %>;--%>
-        <%--let bno = {"bno" : "${boardDto.bno}"};--%>
-
-        // console.log("JavaScript에서 bno 값: " + bno);
-
-        <%--let showList = function () {--%>
-        <%--    let bno = {"bno" : "${boardDto.bno}"};--%>
-
-        <%--    $.ajax({--%>
-        <%--        type:'GET',       // 요청 메서드--%>
-        <%--        url: '/comments?bno='+bno,  // 요청 url--%>
-        <%--        dataType : 'json', // 전송받을 데이터의 타입, 생략해도 됨: 기본이 json--%>
-        <%--        success : function(result) {--%>
-        <%--            // result가 오면 commentList에 담기--%>
-        <%--            // 댓글목록 가져온 것을 commmentList에 담게 됨--%>
-        <%--            // 들어오는 배열을 toHtml이라는 함수를 이용해서 태그 만든 다음 commentList에 넣는다.--%>
-        <%--            $("#commentList").html(toHtml(result));--%>
-        <%--        },--%>
-        <%--        error : function(){--%>
-        <%--            // alert(bno + " : showList bno");--%>
-        <%--            alert(bno + " : showList Bno");--%>
-        <%--            // alert(cbno);--%>
-        <%--            alert("error from showList");--%>
-        <%--        } // 에러가 발생했을 때, 호출될 함수--%>
-        <%--    }); // $.ajax()--%>
-        <%--} //showList--%>
-
-        <%--//댓글 부분 띄워주기 위한 내용--%>
-        <%--let toHtml = function (comments) {--%>
-        <%--    var tmp = "<br><div class='comment-rset'>";--%>
-
-        <%--    // 댓글 하나하나 들고와서 tmp에 쌓는다.--%>
-        <%--    comments.forEach(function (comment) {--%>
-        <%--        tmp += '<div data-cno=' + comment.cno--%>
-        <%--        tmp += ' data-pcno=' + comment.pcno--%>
-        <%--        tmp += ' data-bno=' + comment.bno--%>
-        <%--        // tmp += 'data-comment'+ comment.comment--%>
-        <%--        tmp += '>'--%>
-
-        <%--        if(comment.cno != comment.pcno) { //댓글의 답글일 경우--%>
-        <%--            tmp += '<div id="c-username" class="commenter"><i class="bi bi-reply" style="padding-left: 50px;"></i> ' + comment.commenter + '</div>'--%>
-        <%--            tmp += '<div class="comment" id="textComment" style="display: block; padding-left: 100px;"><span id="commentContents" class="comments">'--%>
-        <%--                + comment.comment + '</span></div>'--%>
-        <%--            tmp += '<div style="padding-left: 50px;"><p class="btns-l">' + comment.up_date + '</p></div>'--%>
-        <%--            tmp += '<button type="button" id="delCommentBtn" >삭제</button>'--%>
-        <%--            tmp += '<button type="button" class="btns-l" id="wriReplyBtn" > 답글달기 </button><br>'--%>
-        <%--            tmp += '</div>'--%>
-        <%--            tmp += '<hr>'--%>
-        <%--            tmp += '<br>'--%>
-
-        <%--        } else { //일반 댓글--%>
-        <%--            // span태그에 넣어야 나중에 작성자만 따로 읽어오기 쉽다.--%>
-        <%--            tmp += '<div id="c-username" class="commenter"><i class="bi bi-reply"></i> ' + comment.commenter + '</div>'--%>
-        <%--            tmp += '<div class="comment" id="textComment" style="display: block"><span id="commentContents" class="comments">'--%>
-        <%--                + comment.comment + '</span></div>'--%>
-        <%--            // tmp += '<div id ="modifyText" style="display : none"><textarea name="modifyContent"></textarea>'+--%>
-        <%--            //     '<button id="modConfirmBtn">' + '수정 등록</button></div>'--%>
-        <%--            tmp += '<div><p class="btns-l">' + comment.up_date + '</p></div>'--%>
-        <%--            tmp += '<button type="button" class="btns-l" id="wriReplyBtn" > 답글달기 </button><br>'--%>
-
-        <%--            tmp += '<button type="button" id="modCommentBtn" class="btn btn-modify">수정</button>'--%>
-        <%--            tmp += '<button type="button" id="delCommentBtn" class="btn btn-remove">삭제</button>'--%>
-
-        <%--            tmp += '<br></div>'--%>
-        <%--            tmp += '<hr>'--%>
-
-        <%--            tmp += '<br>'--%>
-        <%--        }--%>
-
-        <%--    }); //each--%>
-        <%--    tmp += '</div>'--%>
-        <%--    tmp += '<br>'--%>
-        <%--    return tmp; // div html로 반환한다.--%>
-        <%--} //toHtml--%>
-
         showList(bno);
 
         // 수정 등록 버튼
         $("#modConfirmBtn").on("click", function() {
             let cno = $(this).attr("data-cno");
-            let comment = $("textarea[name=commentArea]").val();
+            let comment = $("textarea[name=modifyContent]").val();
 
             if(comment.trim()==''){
                 alert("댓글을 입력하세요");
-                $("textarea[name=commentArea]").focus();
+                $("textarea[name=modifyContent]").focus();
                 return;
             }
 
@@ -363,6 +300,12 @@
                     alert("error from modify");
                 } // 에러가 발생했을 때, 호출될 함수
             }); // $.ajax()
+
+            $("#modifyText").css("display", "none");
+            $("input[name=modifyContent]").val('');
+            $("#commentContents").css("display","block");
+            $("#modifyText").appendTo("body");
+
         }); //modify btn
 
         // 수정 버튼
@@ -372,10 +315,12 @@
             let bno = $(this).parent().attr("data-bno");
             let comment = $("span.comments", $(this).parent()).text();
 
-            // 1. 수정 버튼을 comment의 내용을 input태그에 뿌려주기
-            $("textarea[name=commentArea]").val(comment);
-            // 2. cno 전달하기
-            $("#modConfirmBtn").attr("data-cno", cno);
+            $("#modifyText").appendTo($("#commentContents").parent());
+            $("#commentContents").css("display","none");
+            $("#modifyText").css("display", "block");
+            $("textarea[name=modifyContent]").val(comment); // 1. 수정 버튼을 comment의 내용을 input태그에 뿌려주기
+            $("#modConfirmBtn").attr("data-cno", cno); // 2. cno 전달하기
+
         }); //move cursor to modify
 
 
@@ -383,7 +328,6 @@
         // alert 로 이벤트 작동하는지 확인해보는 것도 좋음.
         $("#commentSendBtn").on("click",function() {
             let comment = $("#text-comment-area").val();
-            alert(comment + " : comment insert "); ///////for debug
 
             if(comment.trim() === '') {
                 alert("댓글을 입력해주세요");
@@ -404,8 +348,9 @@
                     alert("error from post-comment");
                 }
             });
-        }); //write comment
 
+            $("#text-comment-area").val('');
+        }); //write comment
 
         // 댓글 삭제
         $("#commentList").on("click", "#delCommentBtn", function () {
@@ -428,6 +373,9 @@
             }); //delete comment
         });
 
+// ------------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------
 
         //답글 등록
         $("#replyConfirmBtn").on("click", function() {
@@ -451,9 +399,6 @@
                     showList(bno);
                 },
                 error   : function(){
-                    // alert(bno);
-                    // alert(pcno);
-                    // alert(comment);
                     alert("error from reply");
                 } // 에러가 발생했을 때, 호출될 함수
             }); // $.ajax()

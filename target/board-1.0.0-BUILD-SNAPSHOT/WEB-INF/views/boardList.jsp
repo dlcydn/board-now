@@ -4,7 +4,7 @@
 <%@ page session="true"%>
 <c:set var="loginId" value="${sessionScope.id}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
-<c:set var="loginOut" value="${loginId=='' ? 'Login' : 'ID:'+=loginId}"/>
+<c:set var="loginOut" value="${loginId=='' ? 'Login' : 'LogOut'}"/>
 <!DOCTYPE html>
 <html>
 <head>
