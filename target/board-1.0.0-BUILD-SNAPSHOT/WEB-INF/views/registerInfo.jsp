@@ -15,10 +15,13 @@
     <style>
         .title{
             text-align: center;
+            margin : 10% 0 5% 0;
         }
         .inform{
-            border: 1px solid #FC79A5;
-            color: #3C2925;
+            /*border: 1px solid #FC79A5;*/
+            /*color: #3C2925;*/
+            text-align: center;
+            padding : 0 0 10% 0;
         }
 
     </style>
@@ -29,16 +32,33 @@
 
 <div class="title">
     <h1> Welcome </h1>
-    <h5> Thank you for sign up</h5>
 </div>
 <div class="inform">
-    <h3>id : ${user.id}</h3>
-    <h3>pwd : ${user.pwd}</h3>
-    <h3>name : ${user.name}</h3>
-    <h3>email : ${user.email}</h3>
-    <h3>birth : ${user.birth}</h3>
-    <h3>sns : ${user.sns}</h3>
+    <h3>${user.id}</h3><br>
+    <h5> Thank you for sign up</h5>
 </div>
 
 </body>
+
+<script>
+
+    // let birth = '';
+    //
+    // function birthDay(fieldName) {
+    //     var element = document.getElementById(fieldName);
+    //     var date = new Date(element.value);
+    //
+    //     if(!isNaN(date.getTime())) {
+    //         var year = date.getFullYear();
+    //         var month = (date.getMonth() + 1).toString().padStart(2, '0');
+    //         var day = date.getDate().toString().padStart(2, '0');
+    //         const d = year + '-' + month + '-' + day;
+    //         birth = d;
+    //     }
+    //
+    // }
+
+</script>
+
+
 </html>

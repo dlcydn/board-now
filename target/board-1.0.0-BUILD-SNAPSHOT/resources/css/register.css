@@ -52,7 +52,7 @@ label {
 
 .title {
     font-size : 50px;
-    margin: 30px 0 20px 0;
+    margin: 30px 0 15px 0;
     color: #3C2925;
 
 }
@@ -62,9 +62,13 @@ label {
     text-align:center;
     font-size:16px;
     color: #D93A2B;
-    margin-bottom: 20px;
+    margin-bottom: 10%;
 }
 
 .sns-chk {
-    margin-top : 5px;
+    margin-top : 10px;
+}
+
+.star{
+    color: #D93A2B;
 }

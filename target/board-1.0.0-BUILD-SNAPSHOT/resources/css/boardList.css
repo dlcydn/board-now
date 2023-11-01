@@ -31,7 +31,7 @@ input {
 
 .board-container {
     width: 60%;
-    height: 1200px;
+    height: 100%;
     margin: 0 auto;
      /*border: 1px solid black;*/
 }

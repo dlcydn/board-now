@@ -11,36 +11,14 @@
   <component name="ChangeListManager">
     <list default="true" id="79bd1809-9efd-4d17-8b16-d25c8121cdcb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/unipoint/board/controller/CommentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/unipoint/board/controller/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/domain/BoardDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/unipoint/board/domain/BoardDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/domain/UserValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/unipoint/board/domain/UserValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/error_message.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/error_message.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/boardList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/boardList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/loginForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/loginForm.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/registerForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/registerForm.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/registerInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/registerInfo.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/test.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/boardList.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/boardList.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/register.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/controller/CommentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/controller/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/controller/RegisterController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/domain/BoardDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/domain/BoardDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/domain/UserValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/domain/UserValidator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/error_message.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/error_message.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/board.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/board.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/boardList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/boardList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/loginForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/loginForm.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/registerForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/registerForm.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/registerInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/registerInfo.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/test.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/resources/css/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/resources/css/register.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/controller/CommentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/controller/CommentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/controller/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/controller/RegisterController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/domain/BoardDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/domain/BoardDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/domain/UserValidator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/domain/UserValidator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/error_message.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/error_message.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,7 +202,8 @@
       <workItem from="1698364952248" duration="9243000" />
       <workItem from="1698625840065" duration="25761000" />
       <workItem from="1698710435149" duration="5727000" />
-      <workItem from="1698716887908" duration="21122000" />
+      <workItem from="1698716887908" duration="21238000" />
+      <workItem from="1698797039406" duration="15160000" />
     </task>
     <servers />
   </component>

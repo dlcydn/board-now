@@ -26,29 +26,31 @@ public class UserValidator implements Validator {
 		String id = user.getId();
 		String pwd = user.getPwd();
 
-		String name = user.getName();
-		String email = user.getEmail();
-		Date birth = user.getBirth();
+//		String name = user.getName();
+//		String email = user.getEmail();
+//		Date birth = user.getBirth();
 
 //		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "id",  "required");
 //		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pwd", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "birth", "required");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required");
 
 		//error message properties 에서 invalidLength 코드로 저장된 에러 메세지를 출력함. {"5","12"} 의 경우는 정수 출력을 위한 매개 변수.
 		if(id==null || id.length() <  5 || id.length() > 12) {
 			errors.rejectValue("id", "invalidLength", new String[]{"5","12"}, null);
 		}
 
-		if(pwd==null || pwd.length()<8 || pwd.length() > 20) {
+		if(pwd==null || pwd.length()<8 || pwd.length() > 20 || !pwd.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")) {
 			errors.rejectValue("pwd", "invalidLength", new String[]{"8","20"}, null);
 		}
 
-		if(!pwd.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")){
-			errors.rejectValue("pwd", "noMatchPattern", null, null);
-		}
+//		if(!pwd.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")){
+//			errors.rejectValue("pwd", "invalidLength", null, null);
+//		}
 
+//		if (birth == null) { // birth가 null이면 에러 메시지 추가
+//			errors.rejectValue("birth", "required", null, "생일은 필수 항목입니다.");
+//		}
 
 
 	}//validate
