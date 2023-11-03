@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<c:set var="loginId"
-       value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
-<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
+<c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
+
+<c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/> <%-- login 상태면 login 메뉴를 logout으로 연결--%>
 <c:set var="loginOut" value="${loginId=='' ? 'Login' : 'LogOut'}"/>
+<c:set var="mypageLink" value="${loginOut=='LogOut'?'/register/add' : 'mypage/info'}"/>  <%-- login 상태라면 mypage를 보여주고 아니면 sign up으로 연결 --%>
+<c:set var="myPorSign" value="${loginOut=='LogOut'? 'My Page' : 'Sign in'}"/>
 <!DOCTYPE html>
 <html>
 <head>

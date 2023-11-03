@@ -7,6 +7,9 @@
 <c:set var="loginId" value="${sessionScope.id}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? 'Login' : 'LogOut'}"/>
+<c:set var="mypageLink" value="${loginOut=='LogOut'?'/register/add' : 'mypage/info'}"/>  <%-- login 상태라면 mypage를 보여주고 아니면 sign up으로 연결 --%>
+<c:set var="myPorSign" value="${loginOut=='LogOut'? 'My Page' : 'Sign in'}"/>
+
 
 <!DOCTYPE html>
 <html>
@@ -57,14 +60,14 @@
         <input type="hidden" name="bno" value="${boardDto.bno}">
         <textarea class="text-area" name="content" rows="20" placeholder=" 내용을 입력해 주세요." ${mode=="new" ? "" : "readonly='readonly'"}>${boardDto.content}</textarea><br>
         <c:if test="${mode eq 'new'}">
-        <button type="button" id="writeBtn" class="btn btn-write"><i class="fa fa-pencil"></i> 등록</button>  <!-- ok -->
+        <button type="button" id="writeBtn" class="btn btn-outline-info btn-sm"><i class="fa fa-pencil"></i> 등록</button>  <!-- ok -->
         </c:if>
 
         <c:if test="${boardDto.writer eq loginId}">
-        <button type="button" id="modifyBtn" class="btn btn-modify"><i class="fa fa-edit"></i> 수정</button> <!-- modify -->
-        <button type="button" id="removeBtn" class="btn btn-remove"><i class="fa fa-trash"></i> 삭제</button> <!-- remove -->
+        <button type="button" id="modifyBtn" class="btn btn-outline-warning btn-sm"><i class="fa fa-edit"></i> 수정</button> <!-- modify -->
+        <button type="button" id="removeBtn" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i> 삭제</button> <!-- remove -->
         </c:if>
-        <button type="button" id="listBtn" class="btn btn-list"><i class="fa fa-bars"></i> 목록</button> <!-- list -->
+        <button type="button" id="listBtn" class="btn btn-outline-secondary btn-sm"><i class="fa fa-bars"></i> 목록</button> <!-- list -->
     </div>
     <br>
 </form>
@@ -77,11 +80,11 @@
     <hr id="line">
     <div class="comment">
         <div class="comment-wset">
-            <div id="c-username"><span><i class="bi bi-chat-left-dots"></i></span><span id="commenter-area">${loginId}</span></div>
+            <div class="c-username"><span><i class="bi bi-chat-left-dots"></i></span><span class="commenter-area">${loginId}</span></div>
             <div class="input-group">
                 <span class="input-group-text">댓글 쓰기</span>
-                <textarea class="form-control" aria-label="With textarea" id="text-comment-area" rows="3" name="commentArea" placeholder="내용을 입력하세요."></textarea>
-                <button class="btn btn-outline-secondary" type="button" id="commentSendBtn">등록</button>
+                <textarea class="form-control" aria-label="With textarea" id="text-comment-area" name="commentArea" placeholder="내용을 입력하세요."></textarea>
+                <button class="btn btn-outline-info btn-sm" type="button" id="commentSendBtn">등록</button>
             </div>
         </div>
     </div>
@@ -91,24 +94,31 @@
         <div id="commentList"></div>
 
 <%--    댓글 수정 입력창 표시 구간 --%>
-    <div id ="modifyText" style="display : none" style="display: none">
-        <textarea name="modifyContent"></textarea>
-        <button id="modConfirmBtn" type="button">수정 등록</button>
+    <div id ="modifyText" style="display : none">
+        <textarea name="modifyContent" class="appearText" rows="2"></textarea>
+        <br>
+        <button id="modConfirmBtn" type="button" class="btn btn-outline-info btn-sm">수정 등록</button>
+        <button id="cancle-comment" class="btn btn-outline-danger btn-sm" type="button">취소</button>
+        <br>
+        <hr>
+        <br>
     </div>
 
     <%-- 답글 등록 및 표시 구간 --%>
     <div id="replyForm" style="display: none">
+        <hr>
         <div class="comment-reply" >
-            <div><input type="text" name="replyText"></div>
-            <div>
-                <p><button class="btns-l">삭제</button></p>
-                <p><buttton id="replyConfirmBtn" type="button">답글 등록</buttton></p>
+            <div class="c-username"><span><i class="bi bi-chat-left-dots"></i></span><span class="commenter-area">${loginId}</span></div>
+            <div><textarea type="text" name="replyText" class="appearText"></textarea></div>
+
+            <div class="appearBtn">  <%-- button div --%>
+                <buttton id="replyConfirmBtn" type="button" class="btn btn-outline-info btn-sm">답글 등록</buttton>
+                <button id="cancle-reply" class="btn btn-outline-danger btn-sm" rows="2">취소</button>
+                <br>
             </div>
-            <br>
         </div>
     </div>
-
-    <br>
+<%--    <br>--%>
 </div>
 
 
@@ -155,39 +165,45 @@
             tmp += '>'
 
             if(comment.cno != comment.pcno) { //댓글의 답글일 경우
-                tmp += '<div id="c-username" class="commenter"><i class="bi bi-reply" style="padding-left: 50px;"></i> ' + comment.commenter + '</div>'
-                tmp += '<div class="comment" id="textComment" style="display: block; padding-left: 100px;"><span id="commentContents" class="comments">'
+                tmp += '<div class="c-username" class="commenter"><i class="bi bi-reply" style="padding-left: 100px;"></i> ' + comment.commenter
+                tmp += '<p class="date">' + formatDateString(comment.up_date) + '</p></div>'
+                tmp += '<div class="comment" id="textComment" style="display: block; padding-left: 150px;"><span id="commentContents" class="comments">'
                     + comment.comment + '</span></div>'
-                tmp += '<div style="padding-left: 50px;"><p class="btns-l">' + formatDateString(comment.up_date) + '</p></div>'
-<%--                <fmt:formatDate value="${comment.reg_date}" pattern="yyyy-MM-dd" type="date"/>--%>
+
                 if (loginId === comment.commenter) {
-                    tmp += '<button type="button" id="delCommentBtn" >삭제</button>'
+                    tmp += '<button type="button" id="delCommentBtn" class="btn btn-outline-danger btn-sm" >삭제</button>'
                 }
-                tmp += '<button type="button" class="btns-l" id="wriReplyBtn" > 답글달기 </button><br>'
-                tmp += '</div>'
+                tmp += '<button type="button" id="wriReplyBtn" class="btn btn-outline-info btn-sm"> 답글달기 </button><br>'
+                tmp += '</div>' //each
                 tmp += '<hr>'
                 tmp += '<br>'
 
             } else { //일반 댓글
                 // span태그에 넣어야 나중에 작성자만 따로 읽어오기 쉽다.
-                tmp += '<div id="c-username" class="commenter"><i class="bi bi-reply"></i> ' + comment.commenter + '</div>'
-                tmp += '<div class="comment" id="textComment"><span id="commentContents" class="comments" style="display: block">'
+                tmp += '<div class="c-username" class="commenter"><i class="bi bi-reply"></i> ' + comment.commenter
+                tmp += '<p class="date">' + formatDateString(comment.up_date) + '</p>'
+                tmp += '</div>' //commenter div
+
+                tmp += '<div class="comment" id="textComment" ><span id="commentContents" class="comments" style="display: block">'
                     + comment.comment + '</span></div>'
 
-                tmp += '<div><p class="btns-l">' + formatDateString(comment.up_date) + '</p></div>'
-                tmp += '<button type="button" class="btns-l" id="wriReplyBtn" > 답글달기 </button><br>'
+
                 if (loginId === comment.commenter) {
-                    tmp += '<button type="button" id="modCommentBtn" class="btn btn-modify">수정</button>'
-                    tmp += '<button type="button" id="delCommentBtn" class="btn btn-remove">삭제</button>'
+                    tmp += '<button type="button" id="delCommentBtn" class="btn btn-outline-danger btn-sm">삭제</button>'
+                    tmp += '<button type="button" id="modCommentBtn" class="btn btn-outline-warning btn-sm">수정</button>'
                 }
-                tmp += '<br></div>'
+
+                tmp += '<button type="button" id="wriReplyBtn" class="btn btn-outline-info btn-sm" > 답글달기 </button>'
+                tmp += '<br></div>' //each
+                tmp += '<div id="wtf"></div>'
                 tmp += '<hr>'
+                // tmp += '<div id="wtf"></div>'
 
                 tmp += '<br>'
             }
 
         }); //each
-        tmp += '</div>'
+        tmp += '</div>' //comment all set
         tmp += '<br>'
         return tmp; // div html로 반환한다.
     } //toHtml
@@ -268,6 +284,7 @@
             location.href="<c:url value='/board/list${searchCondition.queryString}'/>";
         });
 
+
         // ------------------------------------------------------------------------------------------------------------
         // -------------------------------------------------- comments ------------------------------------------------
         // ------------------------------------------------------------------------------------------------------------
@@ -301,10 +318,11 @@
                 } // 에러가 발생했을 때, 호출될 함수
             }); // $.ajax()
 
-            $("#modifyText").css("display", "none");
-            $("input[name=modifyContent]").val('');
+            //수정내용을 등록한 이후
+            $("#modifyText").css("display", "none"); //disappear
+            $("textarea[name=modifyContent]").val('');
             $("#commentContents").css("display","block");
-            $("#modifyText").appendTo("body");
+            $("#modifyText").appendTo("body"); //back
 
         }); //modify btn
 
@@ -315,14 +333,35 @@
             let bno = $(this).parent().attr("data-bno");
             let comment = $("span.comments", $(this).parent()).text();
 
-            $("#modifyText").appendTo($("#commentContents").parent());
-            $("#commentContents").css("display","none");
-            $("#modifyText").css("display", "block");
+            //수정 이전 창을 표시
+            $("#modifyText").appendTo($("div.comment", $(this).parent())); //come
+            // $("#modifyText").appendTo($(this).find("#commentContents").parent()); //come
+
+            // $("#commentContents").css("display","none");
+            $("span#commentContents", $(this).parent()).css("display", "none");
+            $("#modifyText").css("display", "block"); //appear
+
             $("textarea[name=modifyContent]").val(comment); // 1. 수정 버튼을 comment의 내용을 input태그에 뿌려주기
             $("#modConfirmBtn").attr("data-cno", cno); // 2. cno 전달하기
 
         }); //move cursor to modify
 
+
+        // 댓글 수정 취소
+        $("#cancle-comment").on("click", function (){
+            $("#modifyText").css("display", "none");
+            $("#modifyText").appendTo("body");
+            // $("#commentContents").css("display","block"); //parent 2
+            $("span#commentContents", $(this).parent().parent()).css("display", "block");
+
+        });
+
+        //답글 쓰기 취소
+        $("#cancle-reply").on("click", function (){
+            $("#replyForm").css("display", "none");
+            $("#modifyText").appendTo("body"); //back
+
+        });
 
         //댓글 쓰기 insert 부분
         // alert 로 이벤트 작동하는지 확인해보는 것도 좋음.
@@ -380,12 +419,12 @@
         //답글 등록
         $("#replyConfirmBtn").on("click", function() {
 
-            let comment = $("input[name=replyText]").val();
+            let comment = $("textarea[name=replyText]").val();
             let pcno = $(this).attr("data-pcno");
 
             if(comment.trim()==''){
                 alert("댓글을 입력하세요");
-                $("input[name=replyText]").focus();
+                $("textarea[name=replyText]").focus();
                 return;
             }
 
@@ -405,7 +444,7 @@
 
             //내용 지우고 원래 자리로
             $("#replyForm").css("display", "none");
-            $("input[name=replyText]").val('');
+            $("textarea[name=replyText]").val('');
             $("#replyForm").appendTo("body");
 
         });

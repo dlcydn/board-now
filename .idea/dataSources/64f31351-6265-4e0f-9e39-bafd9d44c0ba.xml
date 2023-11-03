@@ -1004,8 +1004,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="282" parent="1" name="myboard">
       <Current>1</Current>
-      <IntrospectionTimestamp>2023-10-18.23:50:03</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-10-18.05:50:03</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2023-11-01.23:46:44</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-11-01.05:46:44</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="283" parent="1" name="lim"/>
@@ -25101,7 +25101,7 @@ Language</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="4819" parent="696" name="bno">
-      <AutoIncrement>9</AutoIncrement>
+      <AutoIncrement>27</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -25154,7 +25154,7 @@ Language</ColNames>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="4829" parent="697" name="cno">
-      <AutoIncrement>3</AutoIncrement>
+      <AutoIncrement>53</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -25186,51 +25186,61 @@ Language</ColNames>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>7</Position>
     </column>
-    <index id="4836" parent="697" name="PRIMARY">
+    <foreign-key id="4836" parent="697" name="fk_board_comment">
+      <ColNames>bno</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>bno</RefColNames>
+      <RefTableName>board</RefTableName>
+    </foreign-key>
+    <index id="4837" parent="697" name="PRIMARY">
       <ColNames>cno</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="4837" parent="697" name="PRIMARY">
+    <index id="4838" parent="697" name="fk_board_comment">
+      <ColNames>bno</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="4839" parent="697" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="4838" parent="698" name="id">
+    <column id="4840" parent="698" name="id">
       <DasType>varchar(30)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="4839" parent="698" name="pwd">
+    <column id="4841" parent="698" name="pwd">
       <DasType>varchar(50)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="4840" parent="698" name="name">
+    <column id="4842" parent="698" name="name">
       <DasType>varchar(30)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="4841" parent="698" name="email">
+    <column id="4843" parent="698" name="email">
       <DasType>varchar(30)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="4842" parent="698" name="birth">
+    <column id="4844" parent="698" name="birth">
       <DasType>date|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="4843" parent="698" name="sns">
+    <column id="4845" parent="698" name="sns">
       <DasType>varchar(30)|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="4844" parent="698" name="reg_date">
+    <column id="4846" parent="698" name="reg_date">
       <DasType>datetime|0s</DasType>
       <Position>7</Position>
     </column>
-    <index id="4845" parent="698" name="PRIMARY">
+    <index id="4847" parent="698" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="4846" parent="698" name="PRIMARY">
+    <key id="4848" parent="698" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

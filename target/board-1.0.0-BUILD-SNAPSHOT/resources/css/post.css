@@ -19,9 +19,10 @@
 span{
     margin-right: 15px;
 }
+
 hr{
     background: #566;
-    height: 3px;
+    height: 1px;
     border: 0;
 }
 
@@ -45,13 +46,17 @@ hr{
     border-left: 0px;
 }
 
+textarea{
+    padding: 2%;
+}
+
 .text-area {
     width: 90%;
     background: #FEFFFF;
     margin: 2% 0 2% 5%;
     border: none;
     resize: none;
-    padding: 2%;
+    /*padding: 2%;*/
 }
 .text-area:active, .text-area:focus {
     box-shadow: none !important;
@@ -66,18 +71,21 @@ hr{
 }
 .btn {
     float: right;
-    background-color: rgb(236, 236, 236); /* Blue background */
-    border: none; /* Remove borders */
-    color: black; /* White text */
-    padding: 6px 12px; /* Some padding */
-    font-size: 16px; /* Set a font size */
-    cursor: pointer; /* Mouse pointer on hover */
-    border-radius: 5px;
-    margin-bottom: 3%;
+    margin-left: 1%;
+    /*background-color: rgb(236, 236, 236); !* Blue background *!*/
+    /*border: none; !* Remove borders *!*/
+    /*color: black; !* White text *!*/
+    /*padding: 6px 12px; !* Some padding *!*/
+    /*font-size: 16px; !* Set a font size *!*/
+    /*cursor: pointer; !* Mouse pointer on hover *!*/
+    /*border-radius: 5px;*/
+    /*margin-bottom: 3%;*/
+    /*text-decoration: none;*/
 }
-.btn:hover {
-    text-decoration: underline;
-}
+/*.btn:hover {*/
+/*    text-decoration: none;*/
+/*    */
+/*}*/
 
 /*.btn-group{*/
 /*    float: right;*/
@@ -98,13 +106,15 @@ hr{
 .foot-btn{
     margin: 0% 5% 5% 5%;
 }
+
 /*--------------------------------------------------------------*/
+
 .comment{
     /* 	background-color: #f5e9f3; */
     padding: 2% 5% 2% 5%;
 }
 
-#c-username{
+.c-username{
     margin-bottom: 10px;
 }
 
@@ -113,12 +123,18 @@ hr{
 }
 
 .comment-reply{
+    margin-top: 2%;
     margin-left: 5%;
     padding: 1%;
 }
 
+#commentSendBtn{
+    width: 50px;
+    height: 100px;
+}
+
 .comment-rset{
-    padding: 1%;
+    padding: 0 10% 0 10%;
 }
 
 .btns-r{
@@ -132,4 +148,22 @@ hr{
 .commentContents{
     width: 300px;
     border: none;
+}
+
+.date{
+    float: right;
+    margin-right: 30px;
+}
+
+.appearText{
+    width: 70%;
+    margin-left: 10%;
+    margin-right: 1%;
+}
+.appearBtn{
+    margin-right: 20%;
+}
+
+#modConfirmBtn{
+    margin-right: 20%;
 }

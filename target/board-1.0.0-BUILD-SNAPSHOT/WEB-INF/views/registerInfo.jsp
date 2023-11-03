@@ -7,6 +7,7 @@
 <%--<c:set var="loginOut" value="${loginId=='' ? 'Login' : 'ID:'+=loginId}"/>--%>
 <%--<c:set var="loginId" value="Login"/>--%>
 <c:set var="loginOut" value="Login"/>
+<c:set var="myPorSign" value="Sign in"/>
 <!DOCTYPE html>
 <html>
 <head>

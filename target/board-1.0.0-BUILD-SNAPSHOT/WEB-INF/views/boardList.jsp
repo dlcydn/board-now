@@ -5,6 +5,10 @@
 <c:set var="loginId" value="${sessionScope.id}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? 'Login' : 'LogOut'}"/>
+
+<c:set var="mypageLink" value="${loginOut=='LogOut'?'/register/add' : 'mypage/info'}"/>  <%-- login 상태라면 mypage를 보여주고 아니면 sign up으로 연결 --%>
+<c:set var="myPorSign" value="${loginOut=='LogOut'? 'My Page' : 'Sign in'}"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,8 +48,11 @@
           <option value="W" ${ph.sc.option=='W' ? "selected" : ""}>작성자</option> <!-- writer -->
         </select>
 
-        <input type="text" name="keyword" class="search-input" type="text" value="${ph.sc.keyword}" placeholder="검색어를 입력해주세요"> <!-- enter the search keyword -->
-        <input type="submit" class="search-button" value="검색"> <!-- search -->
+        <div class="input-group mb-3">
+          <input type="text" name="keyword" class="form-control" aria-describedby="button-addon2" value="${ph.sc.keyword}" placeholder="검색어를 입력해주세요" id="search-input">
+          <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
+        </div>
+
       </form>
     </div>
     <!-- search -->
@@ -61,10 +68,10 @@
           <th class="commentcnt">댓글수</th>  <!--comment count -->
         </tr>
       </thead>
-      <c:forEach var="boardDto" items="${list}">  <%-- varStatus = "status" --%>
+      <c:set var="startIndex" value="${totalCnt - (ph.sc.page - 1) * ph.sc.pageSize}" /> <!-- bno와 별개로 게시글의 갯수대로 no -->
+      <c:forEach var="boardDto" items="${list}" varStatus="i">
         <tr>
-          <td class="no">${boardDto.bno}</td>
-<%--          <td class="no"> ${status.count} </td>--%>
+          <td class="no">${startIndex - i.index}</td>
           <td class="title"><a href="<c:url value="/board/read${ph.sc.queryString}&bno=${boardDto.bno}"/>">${boardDto.title}</a></td>
           <td class="writer">${boardDto.writer}</td>
           <c:choose>
@@ -99,6 +106,7 @@
             <a class="page" href="<c:url value="/board/list${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
           </c:if>
         </c:if>
+
       </div>
     </div>
   </div>

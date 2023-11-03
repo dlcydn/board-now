@@ -5,6 +5,8 @@
 <c:set var="loginId" value="${pageContext.request.getSession(false) == null ? '' : pageContext.request.getSession.getAttribute('id')}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? 'Login' : 'LogOut'}"/>
+<c:set var="myPorSign" value="Sign in"/>
+
 <!DOCTYPE html>
 <html>
 <head>
