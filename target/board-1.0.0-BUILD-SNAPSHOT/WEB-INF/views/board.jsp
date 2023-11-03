@@ -7,7 +7,7 @@
 <c:set var="loginId" value="${sessionScope.id}"/>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? 'Login' : 'LogOut'}"/>
-<c:set var="mypageLink" value="${loginOut=='LogOut'?'/register/add' : 'mypage/info'}"/>  <%-- login 상태라면 mypage를 보여주고 아니면 sign up으로 연결 --%>
+<c:set var="mypageLink" value="${loginOut=='LogOut'?'/register/add' : 'mypage/userInfo'}"/>  <%-- login 상태라면 mypage를 보여주고 아니면 sign up으로 연결 --%>
 <c:set var="myPorSign" value="${loginOut=='LogOut'? 'My Page' : 'Sign in'}"/>
 
 
@@ -351,7 +351,6 @@
         $("#cancle-comment").on("click", function (){
             $("#modifyText").css("display", "none");
             $("#modifyText").appendTo("body");
-            // $("#commentContents").css("display","block"); //parent 2
             $("span#commentContents", $(this).parent().parent()).css("display", "block");
 
         });

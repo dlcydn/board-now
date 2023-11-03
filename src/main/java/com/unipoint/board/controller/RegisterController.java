@@ -40,25 +40,13 @@ public class RegisterController {
 	UserDao userDao;
 
 	final int FAIL = 0;
-//	private Date someDate;
-//	String FormateDate;
 
 	@InitBinder
 	public void toDate(WebDataBinder binder) {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(df, false));
 		binder.setValidator(new UserValidator()); // UserValidator를 WebDataBinder의 로컬 validator로 등록
-
-//		someDate = (Date) binder.getBindingResult().getModel().get("user.birth");
-//
-//		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//		FormateDate = dateFormat.format(someDate);
 	}
-//	@GetMapping("/showDate")
-//	public String showDate(HttpServletRequest request) {
-//		request.setAttribute("formattedDate", FormateDate);
-//		return "dateDisplay";
-//	}
 
 	@GetMapping("/add")
 	public String register() {
@@ -70,9 +58,6 @@ public class RegisterController {
 	public String save(@Valid User user, BindingResult result, Model m) throws Exception {
 		System.out.println("result="+result);
 		System.out.println("user="+user);
-//		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//		String formattedBirth = dateFormat.format(user.getBirth());
-//		user.setBirth(dateFormat.parse(formattedBirth));
 
 		// if have the result of confirm User Obj, denote the error using by register Form
 		// User객체를 검증한 결과 에러가 있으면, registerForm을 이용해서 에러를 보여줘야 함.

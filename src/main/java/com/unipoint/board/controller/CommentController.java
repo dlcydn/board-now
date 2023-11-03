@@ -32,12 +32,12 @@ public class CommentController {
         BoardDto boardDto = new BoardDto();
         try {
             if(service.modify(dto)!=1)
-                throw new Exception("Write failed.");
+                throw new Exception("수정에 실패하였습니다. 다시 시도해주세요. ");
 
-            return new ResponseEntity<>("MOD_OK", HttpStatus.OK);
+            return new ResponseEntity<>("성공적으로 수정하였습니다.", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>("MOD_ERR", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("잘못된 접근입니다. ", HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -52,12 +52,12 @@ public class CommentController {
 
         try {
             if(service.write(dto)!=1)
-                throw new Exception("Write failed.");
+                throw new Exception("삭제에 실패하였습니다. 다시 시도해주세요.");
 
-            return new ResponseEntity<>("WRT_OK", HttpStatus.OK);
+            return new ResponseEntity<>("성공적으로 작성되었습니다. ", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String>("WRT_ERR", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("잘못된 접근 입니다. ", HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -70,12 +70,12 @@ public class CommentController {
             int rowCnt = service.remove(cno, bno, commenter);
 
             if(rowCnt!=1)
-                throw new Exception("Delete Failed");
+                throw new Exception("삭제에 실패하였습니다. 다시 시도해주세요.");
 
-            return new ResponseEntity<>("DEL_OK", HttpStatus.OK);
+            return new ResponseEntity<>("성공적으로 삭제하였습니다.", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>("DEL_ERR", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("잘못된 접근 입니다.", HttpStatus.BAD_REQUEST);
         }
     }
 

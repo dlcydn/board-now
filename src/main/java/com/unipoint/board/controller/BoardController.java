@@ -27,12 +27,12 @@ public class BoardController {
             if (boardService.modify(boardDto)!= 1)
                 throw new Exception("Modify failed.");
 
-            rattr.addFlashAttribute("msg", "MOD_OK");
+            rattr.addFlashAttribute("msg", "성공적으로 수정되었습니다.");
             return "redirect:/board/list"+sc.getQueryString();
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute(boardDto);
-            m.addAttribute("msg", "MOD_ERR");
+            m.addAttribute("msg", "수정에 실패하였습니다. 다시 시도해주세요.");
             return "board";
         }
     }
@@ -53,13 +53,13 @@ public class BoardController {
             if (boardService.write(boardDto) != 1)
                 throw new Exception("Write failed.");
 
-            rattr.addFlashAttribute("msg", "WRT_OK");
+            rattr.addFlashAttribute("msg", "성공적으로 작성하였습니다.");
             return "redirect:/board/list";
         } catch (Exception e) {
             e.printStackTrace();
             m.addAttribute(boardDto);
             m.addAttribute("mode", "new");
-            m.addAttribute("msg", "WRT_ERR");
+            m.addAttribute("msg", "작성에 실패하였습니다. 다시 시도해주세요.");
             return "board";
         }
     }
@@ -72,7 +72,7 @@ public class BoardController {
             m.addAttribute(boardDto);
         } catch (Exception e) {
             e.printStackTrace();
-            rattr.addFlashAttribute("msg", "READ_ERR");
+            rattr.addFlashAttribute("msg", "게시글을 읽는데 실패하였습니다. 다시 시도해주세요.");
             return "redirect:/board/list"+sc.getQueryString();
         }
 
@@ -82,11 +82,11 @@ public class BoardController {
     @PostMapping("/remove")
     public String remove(Integer bno, SearchCondition sc, RedirectAttributes rattr, HttpSession session) {
         String writer = (String)session.getAttribute("id");
-        String msg = "DEL_OK";
+        String msg = "성공적으로 삭제하였습니다. ";
 
         try {
             if(boardService.remove(bno, writer)!=1)
-                throw new Exception("Delete failed.");
+                throw new Exception("게시글 삭제에 실패하였습니다. 다시 시도해주세요.");
         } catch (Exception e) {
             e.printStackTrace();
             msg = "DEL_ERR";
@@ -115,7 +115,7 @@ public class BoardController {
             m.addAttribute("startOfToday", startOfToday.toEpochMilli());
         } catch (Exception e) {
             e.printStackTrace();
-            m.addAttribute("msg", "LIST_ERR");
+            m.addAttribute("msg", "목록을 불러오는데 실패하였습니다. 다시 시도해주세요.");
             m.addAttribute("totalCnt", 0);
         }
 

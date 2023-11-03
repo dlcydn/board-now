@@ -4,6 +4,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import java.util.Calendar;
 import java.util.Date;
 
 //import java.text.SimpleDateFormat;
@@ -26,31 +27,28 @@ public class UserValidator implements Validator {
 		String id = user.getId();
 		String pwd = user.getPwd();
 
-//		String name = user.getName();
-//		String email = user.getEmail();
-//		Date birth = user.getBirth();
-
-//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "id",  "required");
-//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pwd", "required");
-//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required");
-//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required");
 
 		//error message properties 에서 invalidLength 코드로 저장된 에러 메세지를 출력함. {"5","12"} 의 경우는 정수 출력을 위한 매개 변수.
 		if(id==null || id.length() <  5 || id.length() > 12) {
 			errors.rejectValue("id", "invalidLength", new String[]{"5","12"}, null);
 		}
 
-		if(pwd==null || pwd.length()<8 || pwd.length() > 20 || !pwd.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")) {
-			errors.rejectValue("pwd", "invalidLength", new String[]{"8","20"}, null);
+		if(pwd==null || pwd.length()<8 || pwd.length() > 30 || !pwd.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")) {
+			errors.rejectValue("pwd", "invalidLength", new String[]{"8","30"}, null);
 		}
 
-//		if(!pwd.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")){
-//			errors.rejectValue("pwd", "invalidLength", null, null);
-//		}
+		//120년 전 이전과 현재 날짜 이후의 생일 입력 제한
+		Date birth = user.getBirth();
+		if (birth != null) {
+			Calendar calendar = Calendar.getInstance();
+			calendar.add(Calendar.YEAR, -120); // 120년 전
+			Date minBirthDate = calendar.getTime();
+			Date maxBirthDate = new Date(); // 현재 날짜
 
-//		if (birth == null) { // birth가 null이면 에러 메시지 추가
-//			errors.rejectValue("birth", "required", null, "생일은 필수 항목입니다.");
-//		}
+			if (birth.before(minBirthDate) || birth.after(maxBirthDate)) {
+				errors.rejectValue("birth", "invalidBirth", "유효하지 않은 생년월일입니다.");
+			}
+		}
 
 
 	}//validate
