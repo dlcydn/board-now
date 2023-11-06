@@ -2,12 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <c:set var="loginId" value="${pageContext.request.getSession(false)==null ? '' : pageContext.request.session.getAttribute('id')}"/>
-<%--<c:set var="loginId" value="${pageContext.request.getSession(false) == null ? '' : pageContext.request.getSession.getAttribute('id')}"/>--%>
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
-<%--<c:set var="loginOut" value="${loginId=='' ? 'Login' : 'ID:'+=loginId}"/>--%>
-<%--<c:set var="loginId" value="Login"/>--%>
 <c:set var="loginOut" value="Login"/>
 <c:set var="myPorSign" value="Sign in"/>
+<c:set var="mypageLink" value="${myPorSign=='My Page'?'/mypage' : '/register/add'}"/>  <%-- login 상태라면 mypage를 보여주고 아니면 sign up으로 연결 --%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,8 +18,6 @@
             margin : 10% 0 5% 0;
         }
         .inform{
-            /*border: 1px solid #FC79A5;*/
-            /*color: #3C2925;*/
             text-align: center;
             padding : 0 0 10% 0;
         }

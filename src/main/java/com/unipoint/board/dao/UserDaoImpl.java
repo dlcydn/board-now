@@ -13,50 +13,11 @@ import java.util.Date;
 
 @Repository
 public class UserDaoImpl implements UserDao {
+
     @Autowired
     DataSource ds;
     final int FAIL = 0;
 
-//    @Override
-//    public int deleteUser(String id) {
-//        int rowCnt = 0; // 반환할 결과 행 수
-//
-//        Connection conn = null;
-//        PreparedStatement pstmt = null;
-//
-//        try {
-//            conn = ds.getConnection();
-//            conn.setAutoCommit(false); // 트랜잭션 시작
-//
-//            // 1. 사용자가 작성한 게시물을 삭제
-//            String deleteBoardQuery = "DELETE FROM board WHERE writer = ?";
-//            pstmt = conn.prepareStatement(deleteBoardQuery);
-//            pstmt.setString(1, id);
-//            rowCnt = pstmt.executeUpdate();
-//
-//            // 2. 사용자 정보를 삭제
-//            String deleteUserQuery = "DELETE FROM user_info WHERE id = ?";
-//            pstmt = conn.prepareStatement(deleteUserQuery);
-//            pstmt.setString(1, id);
-//            rowCnt += pstmt.executeUpdate();
-//
-//            conn.commit(); // 트랜잭션 커밋
-//        } catch (SQLException e) {
-//            try {
-//                if (conn != null) {
-//                    conn.rollback(); // 트랜잭션 롤백
-//                }
-//            } catch (SQLException rollbackException) {
-//                rollbackException.printStackTrace();
-//            }
-//            e.printStackTrace();
-//            return FAIL;
-//        } finally {
-//            close(pstmt, conn);
-//        }
-//
-//        return rowCnt;
-//    }
 
     @Override
     public int deleteUser(String id) {

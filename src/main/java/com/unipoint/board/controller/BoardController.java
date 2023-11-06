@@ -15,6 +15,7 @@ import java.util.*;
 @Controller
 @RequestMapping("/board")
 public class BoardController {
+
     @Autowired
     BoardService boardService;
 

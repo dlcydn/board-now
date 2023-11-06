@@ -6,6 +6,8 @@
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/>
 <c:set var="loginOut" value="${loginId=='' ? 'Login' : 'LogOut'}"/>
 <c:set var="myPorSign" value="Sign in"/>
+<c:set var="mypageLink" value="${myPorSign=='My Page'?'/mypage' : '/register/add'}"/>  <%-- login 상태라면 mypage를 보여주고 아니면 sign up으로 연결 --%>
+
 
 <!DOCTYPE html>
 <html>

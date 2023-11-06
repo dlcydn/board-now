@@ -31,7 +31,6 @@ import static org.apache.ibatis.ognl.Ognl.setValue;
 import java.beans.PropertyEditorSupport;
 import javax.servlet.http.HttpServletRequest;
 
-
 @Controller // ctrl+shift+o auto import
 @RequestMapping("/register")
 public class RegisterController {
@@ -69,7 +68,6 @@ public class RegisterController {
 				return "registerInfo";
 			}
 		}
-
 		return "registerForm";
 	}
 

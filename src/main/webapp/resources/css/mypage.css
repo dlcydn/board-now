@@ -1,0 +1,19 @@
+.title{
+     margin: 5% 0 5% 0;
+}
+
+label{
+    float: left;
+}
+
+#all-items{
+    text-align: center;
+    align-items: center;
+}
+
+.card{
+    /*align-items: center;*/
+    /*text-align: center;*/
+    width: 60%;
+
+}
