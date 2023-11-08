@@ -40,7 +40,45 @@ public class MypageController {
         model.addAttribute("user", user); //model 에 user를 담아서 보냄
 
         return "mypage";
-    }
+    } //my page inform
+
+    // deleteUser 메서드 추가
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+    @ResponseBody
+    public String deleteUser(HttpSession session) {
+        String id = (String)session.getAttribute("id");
+
+        if (id != null && !id.isEmpty()) {
+            int result = userDao.deleteUser(id);
+            if (result > 0) {
+                // 사용자 정보 삭제 성공
+                return "성공적으로 사용자 정보를 삭제하였습니다.";
+            } else {
+                // 사용자 정보 삭제 실패
+                return "사용자 정보 삭제에 실패했습니다.";
+            }
+        } else {
+            // 사용자 정보가 없거나 비어있음
+            return "해당 사용자는 존재하지 않습니다.";
+        }
+    } //delete
 
 
-}
+    @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+    @ResponseBody
+    public String updateUser(@RequestBody User user) {
+        // 사용자 정보를 업데이트하고 결과를 받아옵니다.
+        int result = userDao.updateUser(user);
+
+        if (result > 0) {
+            // 업데이트 성공 시 "success" 문자열을 반환
+            return "success";
+        } else {
+            // 업데이트 실패 시 "fail" 또는 오류 메시지를 반환
+            return "fail";
+        }
+    }//update
+
+
+
+} //class

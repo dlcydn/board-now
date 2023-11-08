@@ -34,9 +34,9 @@
 	<input type="hidden" name="toURL" value="${param.toURL}"><label class="remember-btn"><input type="checkbox" name="rememberId" value="on" ${empty cookie.id.value ? "":"checked"}> 아이디 기억</label> <!-- remember id -->
 
 	<button class="login-button">로그인</button>
-	<br>
-		<a href="" id="ll">비밀번호 찾기</a> <!-- find pwd -->
-		<a href="" >회원가입</a> <!-- sign up -->
+<%--	<br>--%>
+<%--		<a href="" id="ll">비밀번호 찾기</a> <!-- find pwd -->--%>
+<%--		<a href="" >회원가입</a> <!-- sign up -->--%>
 	</div>
 	<script>
 		function formCheck(frm) {

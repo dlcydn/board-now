@@ -18,34 +18,59 @@ public class UserDaoImpl implements UserDao {
     DataSource ds;
     final int FAIL = 0;
 
-
-    @Override
     public int deleteUser(String id) {
-        int rowCnt = FAIL; //  insert, delete, update
+        int rowCnt = FAIL; // 실패 시 반환값
 
         Connection conn = null;
         PreparedStatement pstmt = null;
 
-        String sql = "delete from user_info where id= ? ";
+        String deleteCommentsQuery = "DELETE FROM comment WHERE commenter = ?";
+        String updateBoardCommentCountQuery = "UPDATE board b SET b.comment_cnt = (SELECT COUNT(*) FROM comment c WHERE c.bno = b.bno)";
+        String deletePostsQuery = "DELETE FROM board WHERE writer = ?";
+        String deleteUserQuery = "DELETE FROM user_info WHERE id = ?";
 
         try {
             conn = ds.getConnection();
-            pstmt = conn.prepareStatement(sql);
+            conn.setAutoCommit(false); // 트랜잭션 시작
+
+            // Step 1: 삭제될 회원이 작성한 댓글을 삭제
+            pstmt = conn.prepareStatement(deleteCommentsQuery);
             pstmt.setString(1, id);
-//        int rowCnt = pstmt.executeUpdate(); //  insert, delete, update
-//        return rowCnt;
-            return pstmt.executeUpdate(); //  insert, delete, update
+            pstmt.executeUpdate();
+
+            // Step 2: 삭제될 댓글이 존재하던 게시글에서 삭제된 만큼의 댓글 수를 차감
+            pstmt = conn.prepareStatement(updateBoardCommentCountQuery);
+            pstmt.executeUpdate();
+
+            // Step 3: 삭제될 회원이 작성한 게시글을 삭제
+            pstmt = conn.prepareStatement(deletePostsQuery);
+            pstmt.setString(1, id);
+            pstmt.executeUpdate();
+
+            // Step 4: 삭제될 회원의 정보를 삭제
+            pstmt = conn.prepareStatement(deleteUserQuery);
+            pstmt.setString(1, id);
+            rowCnt = pstmt.executeUpdate();
+
+            conn.commit(); // 트랜잭션 커밋
         } catch (SQLException e) {
+            try {
+                if (conn != null) {
+                    conn.rollback(); // 트랜잭션 롤백
+                }
+            } catch (SQLException rollbackException) {
+                rollbackException.printStackTrace();
+            }
             e.printStackTrace();
             return FAIL;
         } finally {
-            // may cause error by close(), surround try-catch
-//            try { if(pstmt!=null) pstmt.close(); } catch (SQLException e) { e.printStackTrace();}
-//            try { if(conn!=null)  conn.close();  } catch (SQLException e) { e.printStackTrace();}
-            close(pstmt, conn); //     private void close(AutoCloseable... acs) {
+            close(pstmt, conn);
         }
+
+        return rowCnt;
     }
-//
+
+
     @Override
     public User selectUser(String id) throws Exception {
         User user = null;
@@ -135,13 +160,13 @@ public class UserDaoImpl implements UserDao {
     // 매개변수로 받은 사용자 정보로 user_info테이블을 update하는 메서드
     @Override
     public int updateUser(User user) {
-        int rowCnt = FAIL; //  insert, delete, update
+        int rowCnt = FAIL;
 
 //        Connection conn = null;
 //        PreparedStatement pstmt = null;
 
         String sql = "update user_info " +
-                "set pwd = ?, name=?, email=?, birth =?, sns=?, reg_date=? " +
+                "set pwd = ?, name=?, email=?, sns=?" +
                 "where id = ? ";
 
         // try-with-resources - since jdk7
@@ -152,10 +177,8 @@ public class UserDaoImpl implements UserDao {
             pstmt.setString(1, user.getPwd());
             pstmt.setString(2, user.getName());
             pstmt.setString(3, user.getEmail());
-            pstmt.setDate(4, new java.sql.Date(user.getBirth().getTime()));
-            pstmt.setString(5, user.getSns());
-            pstmt.setTimestamp(6, new java.sql.Timestamp(user.getReg_date().getTime()));
-            pstmt.setString(7, user.getId());
+            pstmt.setString(4, user.getSns());
+            pstmt.setString(5, user.getId());
 
             rowCnt = pstmt.executeUpdate();
         } catch (SQLException e) {

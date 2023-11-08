@@ -61,9 +61,11 @@
 
     <div class="sns-chk">
         <label for="">SNS</label><br>
-        <span><input type="checkbox" name="sns" value="facebook"/>페이스북</span> <!-- facebook -->
-        <span><input type="checkbox" name="sns" value="kakaotalk"/>카카오톡</span> <!-- kakao -->
-        <span><input type="checkbox" name="sns" value="instagram"/>인스타그램</span> <!-- instargram -->
+        <span><input type="radio" name="sns" value="facebook"/>페이스북</span> <!-- facebook -->
+        <span><input type="radio" name="sns" value="kakaotalk"/>카카오톡</span> <!-- kakao -->
+        <span><input type="radio" name="sns" value="instagram"/>인스타그램</span> <!-- instargram -->
+        <span><input type="radio" name="sns" value="twitter"/>트위터</span> <!-- twitter -->
+        <%-- 복수선택 필요 시 type="checkbox" 로 변경  --%>
     </div>
     <br>
 

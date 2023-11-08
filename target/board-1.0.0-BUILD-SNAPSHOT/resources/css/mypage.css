@@ -1,9 +1,19 @@
 .title{
      margin: 5% 0 5% 0;
+    color: #3C2925;
 }
 
 label{
     float: left;
+}
+
+.msg{
+    color: #D93A2B;
+}
+
+span, input{
+    float: right;
+    margin-right: 10px;
 }
 
 #all-items{
@@ -14,6 +24,7 @@ label{
 .card{
     /*align-items: center;*/
     /*text-align: center;*/
-    width: 60%;
-
+    width: 45%;
+    margin-left: 27%;
+    border-color: #FC79A5;
 }
