@@ -48,7 +48,7 @@
                     </div>
                     <div class="right-side">
 <%--                        <span><i class="bi bi-arrow-clockwise"></i>${boardDto.up_date}</span>--%>
-                        <span><i class="bi bi-arrow-clockwise"></i> <fmt:formatDate value="${boardDto.up_date}" pattern="yyyy-MM-dd" type="date"/></span>
+<%--                        <span><i class="bi bi-arrow-clockwise"></i> <fmt:formatDate value="${boardDto.up_date}" pattern="yyyy-MM-dd" type="date"/></span>--%>
                         <span><i class="bi bi-eye"></i> ${boardDto.view_cnt}</span>
                         <span><i class="bi bi-chat-left-text"></i> ${boardDto.comment_cnt}</span>
                     </div>

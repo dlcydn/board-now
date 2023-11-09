@@ -23,10 +23,11 @@ button,
 input {
     border: none;
     outline: none;
+
 }
 
 .page-title-area{
-    margin: 5% 0 5% 0;
+    margin: 3% 0 2% 0;
 }
 
 .board-container {

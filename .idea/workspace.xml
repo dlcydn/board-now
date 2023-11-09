@@ -11,19 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="79bd1809-9efd-4d17-8b16-d25c8121cdcb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/controller/MypageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/unipoint/board/controller/MypageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/unipoint/board/dao/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/unipoint/board/dao/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/loginForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/loginForm.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/mypage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/mypage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/registerForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/registerForm.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/mypage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/mypage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/boardList.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/boardList.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/controller/MypageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/controller/MypageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/dao/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/unipoint/board/dao/UserDaoImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/mypage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/mypage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/resources/css/mypage.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/resources/css/mypage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/controller/MypageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/controller/MypageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/unipoint/board/dao/UserDaoImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/unipoint/board/dao/UserDaoImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/resources/css/boardList.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/board-1.0.0-BUILD-SNAPSHOT/resources/css/boardList.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,6 +207,9 @@
       <workItem from="1698968955515" duration="27620000" />
       <workItem from="1699229624816" duration="28622000" />
       <workItem from="1699315847198" duration="25451000" />
+      <workItem from="1699401901864" duration="2379000" />
+      <workItem from="1699417579418" duration="3535000" />
+      <workItem from="1699488462939" duration="3122000" />
     </task>
     <servers />
   </component>
