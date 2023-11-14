@@ -69,7 +69,7 @@ public class LoginController {
 		}
 
 //		       3. move to home
-		toURL = toURL == null || toURL.equals("") ? "/" : toURL;
+		toURL = toURL == null || toURL.equals("") ? "/board/list" : toURL;
 
 		return "redirect:" + toURL;
 	}

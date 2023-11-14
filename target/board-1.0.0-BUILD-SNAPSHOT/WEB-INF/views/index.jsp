@@ -5,6 +5,7 @@
 
 <c:set var="loginOutLink" value="${loginId=='' ? '/login/login' : '/login/logout'}"/> <%-- login 상태면 login 메뉴를 logout으로 연결--%>
 <c:set var="loginOut" value="${loginId=='' ? 'Login' : 'LogOut'}"/>
+
 <c:set var="myPorSign" value="${loginOut=='LogOut'? 'My Page' : 'Sign in'}"/>
 <c:set var="mypageLink" value="${myPorSign=='My Page'?'/mypage' : '/register/add'}"/>  <%-- login 상태라면 mypage를 보여주고 아니면 sign up으로 연결 --%>
 
@@ -37,18 +38,22 @@
                     <h5>Board</h5>
                 </div>
             </li>
-            <li class="index-li">
-                <div class="c-div2">
-                    <h1><a href="<c:url value='/login/login'/>"><i class="bi bi-box-arrow-in-right" id="icon-color"></i></a></h1>
-                    <h5>Log In</h5>
-                </div>
-            </li>
-            <li class="index-li">
-                <div class="c-div3">
-                    <h1><a href="<c:url value='/register/add'/>"><i class="bi bi-person-check" id="icon-color"></i></a></h1>
-                    <h5>Sign In</h5>
-                </div>
-            </li>
+            <c:choose>
+                <c:when test="${loginId eq ''}">
+                    <li class="index-li">
+                        <div class="c-div2">
+                            <h1><a href="<c:url value='/login/login'/>"><i class="bi bi-box-arrow-in-right" id="icon-color"></i></a></h1>
+                            <h5>Log In</h5>
+                        </div>
+                    </li>
+                    <li class="index-li">
+                        <div class="c-div3">
+                            <h1><a href="<c:url value='/register/add'/>"><i class="bi bi-person-check" id="icon-color"></i></a></h1>
+                            <h5>Sign In</h5>
+                        </div>
+                    </li>
+                </c:when>
+            </c:choose>
         </ul>
     </div>
 

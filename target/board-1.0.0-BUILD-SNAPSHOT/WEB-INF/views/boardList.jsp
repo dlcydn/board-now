@@ -86,7 +86,7 @@
           <td class="commentcnt">${boardDto.comment_cnt}</td>
         </tr>
       </c:forEach>
-    </table>
+    </table>S
     <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/board/write"/>'"><i class="fa fa-pencil"></i> 글쓰기</button> <!-- write -->
 
     <br>
@@ -106,7 +106,6 @@
             <a class="page" href="<c:url value="/board/list${ph.sc.getQueryString(ph.endPage+1)}"/>">&gt;</a>
           </c:if>
         </c:if>
-
       </div>
     </div>
   </div>

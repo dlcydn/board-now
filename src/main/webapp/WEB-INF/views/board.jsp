@@ -78,19 +78,23 @@
 
 
 <%-- 댓글 입력 창 구간 --%>
-<div class="container">
-    <hr id="line">
-    <div class="comment">
-        <div class="comment-wset">
-            <div class="c-username"><span><i class="bi bi-chat-left-dots"></i></span><span class="commenter-area">${loginId}</span></div>
-            <div class="input-group">
-                <span class="input-group-text">댓글 쓰기</span>
-                <textarea class="form-control" aria-label="With textarea" id="text-comment-area" name="commentArea" placeholder="내용을 입력하세요."></textarea>
-                <button class="btn btn-outline-info btn-sm" type="button" id="commentSendBtn">등록</button>
+    <c:choose>
+    <c:when test="${mode != 'new'}">
+    <div class="container">
+        <hr id="line">
+        <div class="comment">
+            <div class="comment-wset">
+                <div class="c-username"><span><i class="bi bi-chat-left-dots"></i></span><span class="commenter-area">${loginId}</span></div>
+                <div class="input-group">
+                    <span class="input-group-text">댓글 쓰기</span>
+                    <textarea class="form-control" aria-label="With textarea" id="text-comment-area" name="commentArea" placeholder="내용을 입력하세요."></textarea>
+                    <button class="btn btn-outline-info btn-sm" type="button" id="commentSendBtn">등록</button>
+                </div>
             </div>
         </div>
-    </div>
-    <hr>
+        <hr>
+    </c:when>
+    </c:choose>
 
     <%-- 댓글 표시 구간 --%>
     <div id="commentList"></div>
