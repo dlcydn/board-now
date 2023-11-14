@@ -4,12 +4,12 @@
 		"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-<!--		Mapper.xml 작성 후 이 곳에도 내용을 작성해주어야함! 대신 아직 구현되지 않은 기능이 있으면 주석 처리해줄 것 -->
-<!--		when you write the Mapper.xml then should write here about the Dto too.
-			but if there is any function that not implemented yet, then comment out of that. -->
-<!-- 		if the error occur about mybatis, jdbc, sql things that after you write the mapper, then please check here. -->
+		<!--		Mapper.xml 작성 후 이 곳에도 내용을 작성해주어야함! 대신 아직 구현되지 않은 기능이 있으면 주석 처리해줄 것 -->
+		<!--		when you write the Mapper.xml then should write here about the Dto too.
+                    but if there is any function that not implemented yet, then comment out of that. -->
+		<!-- 		if the error occur about mybatis, jdbc, sql things that after you write the mapper, then please check here. -->
 		<typeAlias alias="BoardDto" type="com.unipoint.board.domain.BoardDto"/>
 		<typeAlias alias="SearchCondition" type="com.unipoint.board.domain.SearchCondition"/>
- 		<typeAlias alias="CommentDto" type="com.unipoint.board.domain.CommentDto"/>
+		<typeAlias alias="CommentDto" type="com.unipoint.board.domain.CommentDto"/>
 	</typeAliases>
 </configuration>

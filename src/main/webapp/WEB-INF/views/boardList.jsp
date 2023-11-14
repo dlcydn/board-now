@@ -14,7 +14,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Bulletine Board Basic</title>
-<%--  <link rel="stylesheet" href="<c:url value='/css/menu.css'/>">--%>
+  <%--  <link rel="stylesheet" href="<c:url value='/css/menu.css'/>">--%>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
   <link rel="stylesheet" href="<c:url value='/css/boardList.css'/>">
@@ -59,14 +59,14 @@
 
     <table class="table table-hover">
       <thead>
-        <tr>
-          <th class="no">번호</th> <!-- number -->
-          <th class="title">제목</th> <!-- title -->
-          <th class="writer">이름</th> <!-- name -->
-          <th class="regdate">등록일</th> <!-- register date -->
-          <th class="viewcnt">조회수</th> <!-- view count -->
-          <th class="commentcnt">댓글수</th>  <!--comment count -->
-        </tr>
+      <tr>
+        <th class="no">번호</th> <!-- number -->
+        <th class="title">제목</th> <!-- title -->
+        <th class="writer">이름</th> <!-- name -->
+        <th class="regdate">등록일</th> <!-- register date -->
+        <th class="viewcnt">조회수</th> <!-- view count -->
+        <th class="commentcnt">댓글수</th>  <!--comment count -->
+      </tr>
       </thead>
       <c:set var="startIndex" value="${totalCnt - (ph.sc.page - 1) * ph.sc.pageSize}" /> <!-- bno와 별개로 게시글의 갯수대로 no -->
       <c:forEach var="boardDto" items="${list}" varStatus="i">

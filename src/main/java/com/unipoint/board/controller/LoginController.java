@@ -40,7 +40,7 @@ public class LoginController {
 
 	@PostMapping("/login")
 	public String login(String id, String pwd, String toURL, boolean rememberId, HttpServletRequest request,
-			HttpServletResponse response, Model model) throws Exception {
+						HttpServletResponse response, Model model) throws Exception {
 
 		// 1. confirm the id and pwd
 		if (!loginCheck(id, pwd)) {

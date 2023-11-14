@@ -47,8 +47,8 @@
                         <span><i class="bi bi-calendar-check"></i> <fmt:formatDate value="${boardDto.reg_date}" pattern="yyyy-MM-dd" type="date"/></span>
                     </div>
                     <div class="right-side">
-<%--                        <span><i class="bi bi-arrow-clockwise"></i>${boardDto.up_date}</span>--%>
-<%--                        <span><i class="bi bi-arrow-clockwise"></i> <fmt:formatDate value="${boardDto.up_date}" pattern="yyyy-MM-dd" type="date"/></span>--%>
+                            <%--                        <span><i class="bi bi-arrow-clockwise"></i>${boardDto.up_date}</span>--%>
+                            <%--                        <span><i class="bi bi-arrow-clockwise"></i> <fmt:formatDate value="${boardDto.up_date}" pattern="yyyy-MM-dd" type="date"/></span>--%>
                         <span><i class="bi bi-eye"></i> ${boardDto.view_cnt}</span>
                         <span><i class="bi bi-chat-left-text"></i> ${boardDto.comment_cnt}</span>
                     </div>
@@ -62,19 +62,19 @@
         <input type="hidden" name="bno" value="${boardDto.bno}">
         <textarea class="text-area" name="content" rows="20" placeholder=" 내용을 입력해 주세요." ${mode=="new" ? "" : "readonly='readonly'"}>${boardDto.content}</textarea><br>
         <c:if test="${mode eq 'new'}">
-        <button type="button" id="writeBtn" class="btn btn-outline-info btn-sm"><i class="fa fa-pencil"></i> 등록</button>  <!-- ok -->
+            <button type="button" id="writeBtn" class="btn btn-outline-info btn-sm"><i class="fa fa-pencil"></i> 등록</button>  <!-- ok -->
         </c:if>
 
         <c:if test="${boardDto.writer eq loginId}">
-        <button type="button" id="modifyBtn" class="btn btn-outline-warning btn-sm"><i class="fa fa-edit"></i> 수정</button> <!-- modify -->
-        <button type="button" id="removeBtn" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i> 삭제</button> <!-- remove -->
+            <button type="button" id="modifyBtn" class="btn btn-outline-warning btn-sm"><i class="fa fa-edit"></i> 수정</button> <!-- modify -->
+            <button type="button" id="removeBtn" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i> 삭제</button> <!-- remove -->
         </c:if>
         <button type="button" id="listBtn" class="btn btn-outline-secondary btn-sm"><i class="fa fa-bars"></i> 목록</button> <!-- list -->
     </div>
     <br>
 </form>
 
- <%-- ------------------------------Comments-------------------------------- --%>
+<%-- ------------------------------Comments-------------------------------- --%>
 
 
 <%-- 댓글 입력 창 구간 --%>
@@ -93,9 +93,9 @@
     <hr>
 
     <%-- 댓글 표시 구간 --%>
-        <div id="commentList"></div>
+    <div id="commentList"></div>
 
-<%--    댓글 수정 입력창 표시 구간 --%>
+    <%--    댓글 수정 입력창 표시 구간 --%>
     <div id ="modifyText" style="display : none">
         <textarea name="modifyContent" class="appearText" rows="2"></textarea>
         <br>
@@ -120,7 +120,7 @@
             </div>
         </div>
     </div>
-<%--    <br>--%>
+    <%--    <br>--%>
 </div>
 
 

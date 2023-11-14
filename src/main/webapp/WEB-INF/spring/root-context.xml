@@ -12,11 +12,10 @@
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 <!-- 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property> -->
 <!-- 		<property name="url" value="jdbc:log4jdbc:mysql://localhost:3306/springbasic?useUnicode=true&amp;characterEncoding=utf8"></property> -->
-		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>    <!-- ******* DB (Schema) name -->
 		<property name="url" value="jdbc:mysql://localhost:3306/myboard?useUnicode=true&amp;characterEncoding=utf8"></property>
-														   <!-- ******* enter the DB (Schema) name -->
-		<property name="username" value="lim"></property> <!-- enter the DB's username -->
-		<property name="password" value="unipoint1003"></property> <!-- enter DB's user pwd -->
+		<property name="username" value="lim"></property> <!-- DB username -->
+		<property name="password" value="unipoint1003"></property> <!-- DB user pwd -->
 	</bean>
 
 	<!-- add this bean when - write the mapper && connect DB with mybatis -->
