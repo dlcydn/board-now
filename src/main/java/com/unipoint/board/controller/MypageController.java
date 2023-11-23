@@ -1,7 +1,11 @@
 package com.unipoint.board.controller;
 
 import com.unipoint.board.dao.UserDao;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.unipoint.board.domain.*;
@@ -13,7 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.*;
 
 import javax.servlet.http.*;
+import javax.validation.Valid;
 import java.net.URI;
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.util.*;
 import org.springframework.stereotype.Controller;
@@ -52,25 +58,30 @@ public class MypageController {
             int result = userDao.deleteUser(id);
             if (result > 0) {
                 // 사용자 정보 삭제 성공
-                return "성공적으로 사용자 정보를 삭제하였습니다.";
+                return "success to delete user";
             } else {
                 // 사용자 정보 삭제 실패
-                return "사용자 정보 삭제에 실패했습니다.";
+                return "failed to delete user";
             }
         } else {
             // 사용자 정보가 없거나 비어있음
-            return "해당 사용자는 존재하지 않습니다.";
+            return "no user";
         }
     } //delete
 
 
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
     @ResponseBody
-    public String updateUser(@RequestBody User user) {
+    public String updateUser(@Valid @RequestBody User user, BindingResult result, Model model) {
         // 사용자 정보를 업데이트하고 결과를 받아옵니다.
-        int result = userDao.updateUser(user);
 
-        if (result > 0) {
+        if (result.hasErrors()) {
+            return "error";
+        }
+
+        int UpdateRslt = userDao.updateUser(user);
+
+        if (UpdateRslt > 0) {
             // 업데이트 성공 시 "success" 문자열을 반환
             return "success";
         } else {
@@ -79,6 +90,12 @@ public class MypageController {
         }
     }//update
 
+    @InitBinder
+    public void toDate(WebDataBinder binder) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(df, false));
+        binder.setValidator(new UserValidator()); // UserValidator를 WebDataBinder의 로컬 validator로 등록
+    }
 
 
 } //class

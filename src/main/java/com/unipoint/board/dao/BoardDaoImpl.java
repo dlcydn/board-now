@@ -41,7 +41,7 @@ public class BoardDaoImpl implements BoardDao {
 
     public BoardDto select(Integer bno) throws Exception {
         return session.selectOne(namespace + "select", bno);
-    } // T selectOne(String statement, Object parameter)
+    }
 
     @Override
     public List<BoardDto> selectPage(Map map) throws Exception {

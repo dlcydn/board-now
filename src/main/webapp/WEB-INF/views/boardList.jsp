@@ -86,7 +86,7 @@
           <td class="commentcnt">${boardDto.comment_cnt}</td>
         </tr>
       </c:forEach>
-    </table>S
+    </table>
     <button id="writeBtn" class="btn-write" onclick="location.href='<c:url value="/board/write"/>'"><i class="fa fa-pencil"></i> 글쓰기</button> <!-- write -->
 
     <br>

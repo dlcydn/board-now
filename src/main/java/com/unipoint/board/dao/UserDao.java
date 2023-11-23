@@ -13,4 +13,6 @@ public interface UserDao {
     // 매개변수로 받은 사용자 정보로 user_info테이블을 update하는 메서드
     // the method that update the user's information get from argument to user_info Table
     int updateUser(User user);
+
+    User selectKakao(String email) throws Exception;
 }

@@ -36,7 +36,6 @@ public class BoardServiceImpl implements BoardService {
     public BoardDto read(Integer bno) throws Exception {
         BoardDto boardDto = boardDao.select(bno);
         boardDao.increaseViewCnt(bno);
-
         return boardDto;
     }
 

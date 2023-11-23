@@ -124,6 +124,44 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+    // ==== kakao login ====
+    @Override
+    public User selectKakao(String email) throws Exception {
+        User user = null;
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM user_info WHERE email = ?";
+
+        try {
+            conn = ds.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);
+
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                user = new User();
+                user.setId(rs.getString(1));
+                user.setPwd(rs.getString(2));
+                user.setName(rs.getString(3));
+                user.setEmail(rs.getString(4));
+                user.setBirth(new Date(rs.getDate(5).getTime()));
+                user.setSns(rs.getString(6));
+                user.setReg_date(new Date(rs.getTimestamp(7).getTime()));
+            }
+        } catch (SQLException e) {
+            return user;
+        } finally {
+            close(rs, pstmt, conn);
+        }
+
+        return user;
+    }
+
+
     //the method that save the user's information to user_info Table
     // 사용자 정보를 user_info테이블에 저장하는 메서드
     @Override
@@ -148,12 +186,14 @@ public class UserDaoImpl implements UserDao {
             pstmt.setString(6, user.getSns());
 
             return pstmt.executeUpdate(); //  insert, delete, update;
+
         } catch (SQLException e) {
             e.printStackTrace();
             return FAIL;
         } finally {
             close(pstmt, conn);  //     private void close(AutoCloseable... acs) {
         }
+
     }
 
     //the method that update user_info Table
@@ -166,10 +206,9 @@ public class UserDaoImpl implements UserDao {
 //        PreparedStatement pstmt = null;
 
         String sql = "update user_info " +
-                "set pwd = ?, name=?, email=?, sns=?" +
+                "set pwd = ?, name=?, email=?, birth=?, sns=?" +
                 "where id = ? ";
 
-        // try-with-resources - since jdk7
         try (
                 Connection conn = ds.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql); // SQL Injection attack, Performance improvement
@@ -177,10 +216,12 @@ public class UserDaoImpl implements UserDao {
             pstmt.setString(1, user.getPwd());
             pstmt.setString(2, user.getName());
             pstmt.setString(3, user.getEmail());
-            pstmt.setString(4, user.getSns());
-            pstmt.setString(5, user.getId());
+            pstmt.setDate(4, new java.sql.Date(user.getBirth().getTime()));
+            pstmt.setString(5, user.getSns());
+            pstmt.setString(6, user.getId());
 
             rowCnt = pstmt.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
             return FAIL;

@@ -68,7 +68,7 @@
         <%--                <img src="..." class="card-img-top" alt="...">--%>
         <div class="card-body">
             <h5 class="card-title">회원 정보 수정</h5>
-            <p class="card-text"> id와 생년월일은 변경 불가합니다. </p>
+            <p class="card-text"> id는 변경 불가합니다. </p>
             <p id="msg" class="msg"></p>
         </div>
         <ul class="list-group list-group-flush">
@@ -78,7 +78,7 @@
             <li class="list-group-item"> <label>Email</label> <input id="email" type="text" value="${user.email}" required></li>
             <li class="list-group-item"> <label>Birth Day</label>
                 <input id="birth" type="text"
-                       value="<fmt:formatDate value="${user.birth}" pattern="yyyy-MM-dd" type="date"/>" readonly>
+                       onkeyup="formatDate(this)" value="<fmt:formatDate value="${user.birth}" pattern="yyyy-MM-dd" type="date"/>">
             </li>
             <li class="list-group-item"> <label>SNS</label>
                 <span><input type="radio" name="sns" value="facebook"/>페이스북</span> <!-- facebook -->
@@ -175,6 +175,8 @@
                 if (data === "success") {
                     alert("회원 정보가 성공적으로 수정되었습니다.");
                     cancelModify(); //원래 회원 정보 표시 화면으로 돌리고 값 반영한 화면으로 reload
+                } else if(data === "error") {
+                    alert("유효하지 않은 생년월일 입니다.");
                 } else {
                     alert("회원 정보 수정 중 오류가 발생했습니다.");
                 }
@@ -213,6 +215,18 @@
             }); //ajax
         } //if
     } //delete user
+
+    //birth의 입력이 무조건 [yyyy-MM-dd] 형식으로 - 를 삽입하여 입력
+    function formatDate(input) {
+        // 입력값에서 하이픈(-) 제외
+        var value = input.value.replace(/-/g, '');
+
+        if (/^\d{8}$/.test(value)) {
+            // "yyyyMMdd"를 "yyyy-MM-dd" 형식으로 변경
+            var formattedDate = value.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
+            input.value = formattedDate;
+        }
+    }
 
     // ------------------------------------------------------------------------
 </script>
