@@ -75,56 +75,67 @@
 <%--    ============ kakao Login ============= --%>
     <script type="text/javascript">
 
+        var ACCESS_TOKEN= "${accessToken}";
+        Kakao.Auth.setAccessToken(ACCESS_TOKEN);
+
         //인증 코드 요청
         function kakaoLogin() {
             Kakao.Auth.authorize({
                 redirectUri: 'http://localhost:80/login/kakao'
+                //인증 코드 받을 페이지 (kakao developer 내 애플리케이션에서도 같은 곳으로 설정)
             });
         }
-        //kakao btn activated
 
         $(document).ready(function() {
-            //할당받은 토큰을 설정
-            var ACCESS_TOKEN= "${accessToken}";
-            Kakao.Auth.setAccessToken(ACCESS_TOKEN);
-            // console.log(Kakao.Auth.getAccessToken());
+            handleKakao();
+            //KakaoLogin 으로 코드를 받은 후 바로 회원정보 가져와서 로그인 진행.
         });
 
-        var kakao_message = new Object();
+        function handleKakao() {
 
-        //카카오 회원 정보를 가져오기
-        Kakao.API.request({
-            url: '/v2/user/me',
-        })
-            .then(function(res) {
-                // alert(JSON.stringify(res));
-                console.log(JSON.stringify(res));
+            var kakao_message = new Object();
+            var informErr = false; //information 회원 정보 가져오는 에러
 
-                kakao_message['id'] = res.id;
-                kakao_message['email'] = res.kakao_account.email;
-                kakao_message['nickname'] = res.kakao_account.profile.nickname;
 
-                $.ajax({
-                    type: 'POST',
-                    url: '/login/kakaoConnect',
-                    contentType: 'application/json',
-                    data: JSON.stringify(kakao_message),
-                    success: function (response) {
-                        alert(response);
-                        window.location.href = "/board/list";
-                    },
-                    error: function (error) {
-                        alert("kakao login failed.");
-                        console.log(error);
-                    }
-                })
+            //카카오 회원 정보를 가져오기
+            Kakao.API.request({
+                url: '/v2/user/me',
             })
-            .catch(function(err) {
-                alert(
-                    // 'failed to request user information: ' + JSON.stringify(err) +
-                    "retry please"
-                );
-            });
+                .then(function (res) {
+                    // alert(JSON.stringify(res));
+                    console.log(JSON.stringify(res));
+
+                    kakao_message['id'] = res.id;
+                    kakao_message['email'] = res.kakao_account.email;
+                    kakao_message['nickname'] = res.kakao_account.profile.nickname;
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/login/kakaoConnect',
+                        contentType: 'application/json',
+                        data: JSON.stringify(kakao_message),
+                        success: function (response) {
+                            alert(response);
+                            window.location.href = "/board/list";
+                        },
+                        error: function (error) {
+                            informErr = true;
+                            alert("kakao login failed.");
+                            console.log(error);
+                        }
+                    })
+                    informErr = true; //success에서 화면이 바뀌지 않을 경우 error 로 간주
+                })
+                .catch(function (err) {
+                    const isErr = true;
+                    if(isErr === informErr) {
+                        alert("failed to request user information : " + JSON.stringify(err));
+                    }
+                    //코드를 받아오기 전에 진행되서 무조건 에러가 나는걸 방지
+                    //에러가 발생한 상황에 informErr 값을 변경하고 isErr의 값이 같을 경우에만 alert
+
+                });
+        }
     </script>
 
 </form>
